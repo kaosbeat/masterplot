@@ -2,7 +2,19 @@ import sys
 from chiplotle import *
 from chiplotle.tools.io import export
 from chiplotle.tools.plottertools import instantiate_virtual_plotter
-plotter =  instantiate_virtual_plotter(type="DXY1300")
+virtualplotting = sys.argv[2]
+
+#print(virtualplotting)
+if (virtualplotting == 'virtual'):
+		plotter = instantiate_virtual_plotter(type="DXY1300")
+if (virtualplotting == 'real'):
+		plotter = instantiate_plotters( )[0]
+		print("plotting for real")
+
+
+
+
+
 # plotter.margins.hard.draw_outline()
 # plotter = instantiate_plotters( )[0]
 # real plotter says
@@ -149,7 +161,7 @@ noise = 500
 #somewaves(2,False, True, [wav3, wav1], ["cos", "saw", "saw", "sin", "sin"], [1500, 5100, 500, 2000, 6000], ["rect", "cross", "cross", "rect", "cross"])  
 plotter.write(g)
 
-somewaves(3,False, True, [wav1, wav3, wav1, wav2, wav2], ["sin", "sin", "sin", "cos", "saw"], [1000, 1500, 3500, 3000, 5000], ["rect", "cross", "cross", "rect", "cross"])  
+#somewaves(3,False, True, [wav1, wav3, wav1, wav2, wav2], ["sin", "sin", "sin", "cos", "saw"], [1000, 1500, 3500, 3000, 5000], ["rect", "cross", "cross", "rect", "cross"])  
 # somewaves(False,True,[wav3,wav2],["sin","saw"],[1000,3000],["cross","cross"])
 plotter.write(g)
 

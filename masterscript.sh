@@ -175,6 +175,7 @@ fi
 #### calling additional script
 ### the script must accept a filename (absolute path) as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
 if [ $script == 1 ]; then
+echo "$s $PWD/output/$f $p"
     python $s $PWD/output/$f $p
     if [ $t != nt ]; then
         tweetimg=$PWD/output/$f.jpg
