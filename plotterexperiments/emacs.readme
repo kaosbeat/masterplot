@@ -1,0 +1,28 @@
+in emacs
+
+install jedi
+install pyvenv
+
+
+
+activate python2.7 envirionment from within emcas
+
+in my case M-x pyvenv-activaste /usr/local/anaconda3/envs/magenta
+
+
+
+C-c C-p start python shell
+C-c C-c runs whole file
+
+
+GIT
+C-x g > starts git shell
+q hops back one window
+s stages change
+c commit
+type commit message
+ then C-c C-c
+
+
+Push
+P then p
