@@ -25,6 +25,8 @@
 # "-g" git options
     ## if supplied commit with default message
     ## if supplied with argument include it in commit message
+# "-p" plot options
+    ## virtual or real
 
 ####https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 # saner programming env: these switches turn some bugs into errors
@@ -36,8 +38,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=f:b:B:i::c:g::t::s:
-LONGOPTS=file:,blender:,blenderfile:,inkscape::,chiplotle:,git::,twitter::,script:
+OPTIONS=f:b:B:i::c:g::t::s:p:
+LONGOPTS=file:,blender:,blenderfile:,inkscape::,chiplotle:,git::,twitter::,script:,plot:
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
@@ -49,7 +51,7 @@ fi
 eval set -- "$PARSED"
 
 echo "$PARSED"
-f=nf B=nB b=nb c=nc ink=ni g=ng t=nt plot=0 s=ns githash='' script=0 blend=0
+f=nf B=nB b=nb c=nc ink=ni g=ng t=nt chip=0 s=ns githash='' script=0 blend=0 p=np
 # now enjoy the options in order and nicely split until we see --
 
 while true; do
@@ -80,10 +82,10 @@ while true; do
                 "") ink='some default value' ; shift 2 ;;
                 *) ink=$2 ; shift 2 ;;
             esac ;;
-        -c|--chiplotle)
+        -c|--chiplotle)   ### specify virtual or real plotter anyways, until resolved
             echo "encounterd C $2"
             c="$2"
-            plot=1
+            chip=1
             shift 2
             ;;
         -s|--script)
@@ -108,6 +110,11 @@ while true; do
                 "") tweet='default tweetmessage, not feeling creative, look at the picture' ; shift 2 ;;
                 *) tweet=$2 ; shift 2 ;;
             esac ;;
+        -p|--plot)
+            echo "encounterd p $2"
+            p="$2"
+            shift 2
+            ;;
         --)
             shift
             break
@@ -159,7 +166,7 @@ if [ $ink != ni ]; then
 fi
 
 #### calling chiplotle with the svgplotter arguments are in order!! real/virtual hidden/unhidden/both so pass as -c"real both" or --chiplotle"real unhidden"
-if [ $plot == 1 ]; then
+if [ $chip == 1 ]; then
     python plotrender.py $PWD/output/$svgfilename $c
 fi
 
@@ -168,7 +175,7 @@ fi
 #### calling additional script
 ### the script must accept a filename (absolute path) as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
 if [ $script == 1 ]; then
-    python $s $PWD/output/$basename
+    python $s $PWD/output/$basename $p
     if [ $t != nt ]; then
         tweetimg=$PWD/output/$basename.jpg
     fi

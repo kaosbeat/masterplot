@@ -3,12 +3,17 @@ from chiplotle.tools.io import export
 from PIL import Image
 import math
 import sys
-from plothelpers import sign
-
-
 
 from chiplotle.tools.plottertools import instantiate_virtual_plotter
-plotter =  instantiate_virtual_plotter(type="DXY1300")
+virtualplotting = sys.argv[2]
+
+#print(virtualplotting)
+if (virtualplotting == 'virtual'):
+		plotter = instantiate_virtual_plotter(type="DXY1300")
+if (virtualplotting == 'real'):
+		plotter = instantiate_plotters( )[0]
+		print("plotting for real")
+
 
 #plotter = instantiate_plotters( )[0]
 # real plotter says

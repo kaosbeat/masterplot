@@ -1,3 +1,4 @@
+import sys
 from chiplotle import *
 from chiplotle.tools.plottertools import instantiate_virtual_plotter
 plotter =  instantiate_virtual_plotter(type="DXY1300")
@@ -164,6 +165,11 @@ print "second pass"
 # transforms.offset(g, (g.width, g.height))
 
 #io.save_hpgl(g, "test.plt")
+
+
+export(plotter, sys.argv[1], fmt='jpg')
+plotter.write(sign(sys.argv[0]))
+export(plotter, sys.argv[1], fmt='svg')
 io.view(plotter)
 
 
