@@ -166,17 +166,17 @@ fi
 
 
 #### calling additional script
-### the script must accept a filename as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
+### the script must accept a filename (absolute path) as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
 if [ $script == 1 ]; then
-    python $s $basename
+    python $s $PWD/output/$basename
     if [ $t != nt ]; then
-        tweetimg=$basename.jpg
+        tweetimg=$PWD/output/$basename.jpg
     fi
 fi
 
 ##call git
 if [ $g == dogit ]; then
-    git add $svgfilename
+    git add $PWD/output/$svgfilename
     git commit -a -m "plotting $g"
     githash=`git rev-parse HEAD`
 fi

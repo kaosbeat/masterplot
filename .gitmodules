@@ -1,6 +1,0 @@
-[submodule "plotterexperiments"]
-	path = plotterexperiments
-	url = https://github.com/kaosbeat/plotterexperiments
-[submodule "blenderplotter"]
-	path = blenderplotter
-	url = https://github.com/kaosbeat/blenderplotter
