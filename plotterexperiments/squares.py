@@ -1,5 +1,6 @@
 import sys
 from chiplotle import *
+from chiplotle.tools.io import export
 from chiplotle.tools.plottertools import instantiate_virtual_plotter
 plotter =  instantiate_virtual_plotter(type="DXY1300")
 # plotter.margins.hard.draw_outline()
@@ -168,7 +169,7 @@ print "second pass"
 
 
 export(plotter, sys.argv[1], fmt='jpg')
-plotter.write(sign(sys.argv[0]))
+#plotter.write(sign(sys.argv[0]))
 export(plotter, sys.argv[1], fmt='svg')
 io.view(plotter)
 
