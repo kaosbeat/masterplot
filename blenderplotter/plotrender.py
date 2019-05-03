@@ -62,7 +62,8 @@ def calculatesvggroup(svg):
 	g = shapes.group([])
 	h = shapes.group([])
 	paths, attributes, svg_attributes = svg2paths2(svg)
-	#print attributes
+	print(paths)
+	
 	#paths, attributes = svg2paths(svg)
 #	print dir(paths[0][0].start.real)
 	for idx, path in enumerate(paths):
@@ -151,7 +152,9 @@ def grabSVGandplotWithChiplotle(file):
 
 
 print (sys.argv[1])
-grabSVGandplotWithChiplotle(sys.argv[1])
-plotter.write(sign(sys.argv[1]))
-io.view(plotter)
+print(svg2paths2(sys.argv[1].encode('utf-8')))
+# getGroup(sys.argv[1].encode('utf-8'), 'layer1'):
+# grabSVGandplotWithChiplotle(sys.argv[1])
+# plotter.write(sign(sys.argv[1]))
+# io.view(plotter)
 # io.view(plotter)
