@@ -145,7 +145,7 @@ def dostufff():
     return(grammar.flatten("#origin#"))
 
 
-#dosomegeom()
+dosomegeom()
 #multicubegeom(sys.argv[sysargvoffset+2], sys.argv[sysargvoffset+3])
 
 #bezierStack()

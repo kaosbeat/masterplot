@@ -47,7 +47,7 @@ def setRenderParams():
     
     bpy.context.scene.render.resolution_y = 1500 
     bpy.context.scene.render.resolution_x = 1500
-    bpy.context.scene.render.resolution_percentage =100
+    bpy.context.scene.render.resolution_percentage = 50
     
 
 
@@ -55,8 +55,15 @@ def renderStuff():
     #render image
     bpy.context.scene.render.filepath = './' + sys.argv[sysargvoffset+1]
     bpy.ops.render.render( write_still=True )
-    
 
+def renderStuff():
+    #render image
+    bpy.context.scene.render.filepath = './'
+    bpy.ops.render.render( write_still=True )   
+
+
+
+# dosomegeom()
 setFreestyleContext()
 setRenderParams()
 renderStuff()
