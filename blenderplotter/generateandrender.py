@@ -44,6 +44,21 @@ def multicubegeom(cubenum, union):
     bpy.ops.view3d.camera_to_view_selected()
 
 
+def geomcomposition():
+    rad = random.random()*0.2+0.3
+    loc = [random.random()*3, random.random()*3, random.random()*3]
+    rot = [random.random()*90,random.random()*90,random.random()*90]
+    add_cube = bpy.ops.mesh.primitive_cube_add
+    add_cube(location=loc,rotation=rot, radius=rad)
+    for vert in bpy.data.objects["Cube"].data.vertices:
+        vert.co.x += random.random()*0.2+0.3
+        vert.co.y += random.random()*0.8+0.3
+    # bpy.data.objects["Cube"].data.vertices[0].co.x += 1.0
+
+
+
+geomcomposition()
+
 def bezierStack():
     add_curve = bpy.ops.curve.primitive_bezier_curve_add
     loc = [random.random()*3, random.random()*3, random.random()*3]
@@ -145,7 +160,7 @@ def dostufff():
     return(grammar.flatten("#origin#"))
 
 
-dosomegeom()
+# dosomegeom()
 #multicubegeom(sys.argv[sysargvoffset+2], sys.argv[sysargvoffset+3])
 
 #bezierStack()

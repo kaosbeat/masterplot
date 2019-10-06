@@ -20,11 +20,20 @@ so using call from the blender script to comunicate with chiplotle
 ### svgPathTools (python)
 https://github.com/mathandy/svgpathtools
 
-##install extra python libraries in blender
+## install extra python libraries in blender
 
 
 
 ###  current use
+#### masterscript.sh
+we use bash to chain it together
+#### open a python 2.7 env
+source activate magenta
+- make sure plotter is connected or use virtual
+./masterscript.sh -Bplotrendertemplate -b "-g multicubegeom(20,'union') --render png -r svg -r size=10" -ftesting -g"masterscript is upandrunning" -t"smooth testing" -c"virtual both"
+
+
+#### older way
 $ /Applications/Blender/blender.app/Contents/MacOS/blender stroketesting.blend --background --python generateandrender.py -- mysvg.svg
 
 this produces an SVG named mysvg.svg
