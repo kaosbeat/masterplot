@@ -140,7 +140,7 @@ for x in xrange(10):
     for y in xrange(10):
         for l in xrange(2):
             p = random.randint(0,1)
-            plotter.select_pen(p+1)
+            # plotter.select_pen(p+1)
             r = random.randint(sqsize, 1.3*sqsize)
             d = random.randint(20, 65)
             if (p == 1):
@@ -149,7 +149,7 @@ for x in xrange(10):
             else:
                 ysize = r
                 xsize = sqsize
-            dosquare2(d, xsize, ysize, xbase + x*xoff, ybase +y*xoff)
+            # dosquare2(d, xsize, ysize, xbase + x*xoff, ybase +y*xoff)
 
 
 io.export(plotter, filename, fmt='jpg')
