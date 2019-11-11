@@ -1,6 +1,8 @@
 from chiplotle import *
 from PIL import Image
 import sys
+from lib.plothelpers import sign
+
 filename = sys.argv[1]
 virtualplotting = sys.argv[2]
 
@@ -11,7 +13,7 @@ if (virtualplotting == 'real'):
 		plotter = instantiate_plotters()[0]
 		print("plotting for real")
 
-plotter.margins.hard.draw_outline()
+# plotter.margins.hard.draw_outline()
 # plotter = instantiate_plotters( )[0]
 # real plotter says
 #    Drawing limits: (left 0; bottom 0; right 16158; top 11040)
@@ -141,7 +143,7 @@ for x in xrange(10):
         for l in xrange(2):
             p = random.randint(0,1)
             # plotter.select_pen(p+1)
-            r = random.randint(sqsize, 1.3*sqsize)
+            r = random.randint(sqsize, 2*sqsize)
             d = random.randint(20, 65)
             if (p == 1):
                 xsize = r
@@ -149,9 +151,11 @@ for x in xrange(10):
             else:
                 ysize = r
                 xsize = sqsize
-            # dosquare2(d, xsize, ysize, xbase + x*xoff, ybase +y*xoff)
-
-
+            dosquare2(d, xsize, ysize, xbase + x*xoff, ybase +y*xoff)
+r = shapes.rectangle(8000,8000)
+transforms.offset(r,(4000,4000))
+plotter.write(r)
+plotter.write(sign("loosely filled squares", 8100, 100 ))
 io.export(plotter, filename, fmt='jpg')
 io.export(plotter, filename, fmt='svg')
 io.view(plotter)
