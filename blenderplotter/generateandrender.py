@@ -53,6 +53,10 @@ def geomcomposition():
     for vert in bpy.data.objects["Cube"].data.vertices:
         vert.co.x += random.random()*0.2+0.3
         vert.co.y += random.random()*0.8+0.3
+    sizex = random.random(1,2)
+    sizey = random.random(3,5)
+    sizez = random.random(1,4)
+    bpy.data.objects["Cube"].dimensions = (sizex, sizey, sizez)
     # bpy.data.objects["Cube"].data.vertices[0].co.x += 1.0
 
 

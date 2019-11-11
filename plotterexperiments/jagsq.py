@@ -2,9 +2,9 @@ from chiplotle import *
 from PIL import Image
 
 from chiplotle.tools.plottertools import instantiate_virtual_plotter
-#plotter =  instantiate_virtual_plotter(type="DXY1300")
-#plotter.margins.hard.draw_outline()
-plotter = instantiate_plotters( )[0]
+plotter =  instantiate_virtual_plotter(type="DXY1300")
+plotter.margins.hard.draw_outline()
+# plotter = instantiate_plotters( )[0]
 # real plotter says
 #    Drawing limits: (left 0; bottom 0; right 16158; top 11040)
 

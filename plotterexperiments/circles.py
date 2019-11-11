@@ -13,6 +13,8 @@ from scipy import signal
 
 plotsize = [10, 10]
 
+print("this ois a text")
+
 # Y = np.linspace(p1[1] ,p2[1], len(spaceX))
 # #
 # The parametric equation for a circle is
