@@ -134,10 +134,10 @@ def dosquare2(depth,sizeX,sizeY,xoff,yoff):
 
 xbase = 200
 ybase = 200
-xoff = 375
-sqsize  = 250
-for x in xrange(20):
-    for y in xrange(20):
+xoff = 750
+sqsize  = 500
+for x in xrange(10):
+    for y in xrange(10):
         for l in xrange(2):
             p = random.randint(0,1)
             plotter.select_pen(p+1)
