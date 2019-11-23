@@ -128,14 +128,14 @@ def renderline(data, y):
 
 
 
-# for x in xrange(1,2):
-# 	for y in xrange(1,2):
-		# plotPolygons(700,x*1800, -y*1800, x+3, y*100)
-		# plotCircles(1000, x*900, -y*1800, 50, 0)
-		# plotCircles(900, x*1800, -y*1800, 25, 0)
-        # plotSquare(1000, x*1800, -y*1800, x*10, y*100)
+for x in xrange(1,2):
+	for y in xrange(1,2):
+		plotPolygons(700,x*1800, -y*1800, x+3, y*100)
+		plotCircles(1000, x*900, -y*1800, 50, 0)
+		plotCircles(900, x*1800, -y*1800, 25, 0)
+        plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
-renderline(inputdata, 80)
+# renderline(inputdata, 80)
 
 
 
