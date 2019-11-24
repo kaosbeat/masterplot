@@ -285,22 +285,27 @@ def renderline(indata, moddata, miny, maxy):
 	g = shapes.group([])
 	random.seed(10)
 	for yi in xrange(len(moddata)):
+		yoffset = yi*yi/100
 		pointsY = []
 		pointsX = []
-		for xi in xrange(len(indata)):
-			x = xi * (200 +random.randint(10,30))
-			y = indata[xi] * moddata[yi] + yi*yi/offsetY
-			pointsX.append(x)
-			pointsY.append(y)
-		
-		minY = min(pointsY)
-		maxY = max(pointsY)
-		newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
-		print(newpointsY)
 		points = []
-		for x in xrange(10):
-			for y in xrange(len(newpointsY)):
-				points.append((pointsX[x],pointsY[y]))
+		for xi in xrange(len(indata)):
+			x = xi * (200/(yi +1))
+			y = yoffset + indata[xi]*moddata[yi]
+			points.append((x,y))
+		# 	x = xi * (200 +random.randint(10,30))
+		# 	y = indata[xi] * moddata[yi] + yi*yi/offsetY
+		# 	pointsX.append(x)
+		# 	pointsY.append(y)
+		
+		# minY = min(pointsY)
+		# maxY = max(pointsY)
+		# newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
+		# print(newpointsY)
+		# points = []
+		# for x in xrange(10):
+		# 	for y in xrange(len(newpointsY)):
+		# 		points.append((pointsX[x],pointsY[y]))
 		g.append(shapes.path(points))
 	plotter.write(g)
 
