@@ -155,7 +155,8 @@ def renderline(indata, moddata, miny, maxy):
 	# minmoddata = min(moddata)
 	# maxmoddata = max(moddata)
 	# remappedmoddata = list(map(lambda x: remap(x, minmoddata, maxmoddata, miny, maxy), moddata))
-	g = shapes.group([])
+	g1 = shapes.group([])
+	g2 = shapes.group([])
 	c = 1.8 #curvature
 	p = -4 #perspective stretch
 	compression = 4000
@@ -210,7 +211,7 @@ def renderline(indata, moddata, miny, maxy):
 
 		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
 			pathpoints.append((ax1[i],ay1new[i]))
-	g.append(shapes.catmull_path(pathpoints))
+	g1.append(shapes.catmull_path(pathpoints))
 
 
 			# g.append(shapes.line((x1,y1),(x2,y2)))
@@ -254,14 +255,16 @@ def renderline(indata, moddata, miny, maxy):
 		else:
 			# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
 			pathpoints.append((bx1[i],by1new[i]))
-	g.append(shapes.path(pathpoints))
+	g2.append(shapes.path(pathpoints))
 
 			# g.append(shapes)
 	# transforms.scale(g/ 4.5)
 	# transforms.rotate(g,90)
-	transforms.offset(g, (pltmax[0],0))
-	print(g.width)
-	plotter.write(g)
+	transforms.offset(g1, (pltmax[0],0))
+	transforms.offset(g12, (pltmax[0],0))
+	# print(g.width)
+	plotter.write(g1)
+	plotter.write(g2)
 
 #### text
 def bytext():
@@ -324,8 +327,8 @@ print(inputdata)
 # 		plotter.write(l)
   
 
-p = shapes.path([(0,0), (2500,1000), (5000,5000) ])
-plotter.write(p)
+# p = shapes.path([(0,0), (2500,1000), (5000,5000) ])
+# plotter.write(p)
 
 bytext()
 maintext()
