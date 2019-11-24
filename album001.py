@@ -261,7 +261,7 @@ def renderline(indata, moddata, miny, maxy):
 	# transforms.scale(g/ 4.5)
 	# transforms.rotate(g,90)
 	transforms.offset(g1, (pltmax[0],0))
-	transforms.offset(g12, (pltmax[0],0))
+	transforms.offset(g2, (pltmax[0],0))
 	# print(g.width)
 	plotter.write(g1)
 	plotter.write(g2)
@@ -315,7 +315,7 @@ modulationdata = generatemodulation(80, 10, random.randint(1,100),100)
 
 print(inputdata)
 
-# renderline(inputdata, modulationdata, 0, 5000)
+renderline(inputdata, modulationdata, 0, 5000)
 
 
 # xlen = 10
