@@ -295,7 +295,7 @@ def renderline(indata, moddata, miny, maxy):
 		pointsH = []
 		for xi in xrange(len(indata)):
 			x = xi * (200 +random.randint(10,30))
-			y = indata[xi] * moddata[yi] + offsetY*yi
+			y = indata[xi] * newmoddata[yi] + yi*yi/offsetY
 			pointsH.append((x,y))
 		g.append(shapes.path(pointsH))
 	plotter.write(g)
