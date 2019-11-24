@@ -216,9 +216,9 @@ def renderline(indata, moddata, miny, maxy):
 	# ///we split the loops for effcient polylines construction
 
 	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
-	for x in xrange(1,len(inputdata)-1):
+	for x in xrange(1,len(inputdata)/2):
 		for y in xrange(1,len(modulationdata)-2):
-			x1 = -x * 600 / y
+			x1 = -x * 60 / y
 			y1 = (60-c*y)*y+(y*50+(inputdata[x]*5 * modulationdata[y]))
 			x2 = -x * 600 / (y+1)
 			y2 = (60-c*(y+1))* (y+1)+((y+1)*50+(inputdata[x]*5 * modulationdata[y+1]))
