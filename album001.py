@@ -312,7 +312,7 @@ modulationdata = generatemodulation(80, 10, random.randint(1,100),100)
 
 print(inputdata)
 
-renderline(inputdata, modulationdata, 0, 5000)
+# renderline(inputdata, modulationdata, 0, 5000)
 
 
 # xlen = 10
@@ -324,6 +324,8 @@ renderline(inputdata, modulationdata, 0, 5000)
 # 		plotter.write(l)
   
 
+p = shapes.path([(0,0), (2500,1000), (5000,5000) ])
+plotter.write(p)
 
 bytext()
 maintext()
