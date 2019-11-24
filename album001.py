@@ -122,7 +122,7 @@ modulationdata = [0,0,3,4,4,4,3,2,1,0,0,0,0,1,2,3,4,5,4,3,4,5,0,0,3,4,4,4,3,2,1,
 def remap(x, in_min, in_max, out_min, out_max):
 	a = (in_max - in_min) + out_min
 	if (a == 0):
-		a = 0.1
+		a = 1
 	return (x - in_min) * (out_max - out_min) / a
 
 
