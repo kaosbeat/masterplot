@@ -298,7 +298,7 @@ def renderline(indata, moddata, miny, maxy):
 		newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
 		print(newpointsY)
 		points = []
-		for x in xrange(len(pointsX)):
+		for x in xrange(1):
 			for y in xrange(len(newpointsY)):
 				points.append((pointsX[x],pointsY[y]))
 		g.append(shapes.path(points))
