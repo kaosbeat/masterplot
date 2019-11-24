@@ -245,17 +245,24 @@ def renderline(indata, moddata, miny, maxy):
 	by2new = list(map(lambda x: remap(x, minby2, maxby2, miny,maxy), by2))
 
 	pathpoints = []
-	for i in xrange(len(bx1)):
-		if ( bx1[i] < -pltmax[0]):
-			if (bx2[i] < -pltmax[0]):
-				pass
+	# for i in xrange(len(bx1)):
+	# 	if ( bx1[i] < -pltmax[0]):
+	# 		if (bx2[i] < -pltmax[0]):
+	# 			pass
+	# 		else:
+	# 			pass
+	# 			# g.append(shapes.line((x1,y1),(x2,y2)))
+	# 	else:
+	# 		# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
+	# 		pathpoints.append((bx1[i],by1new[i]))
+	for i in xrange(len(bx1)-1):
+		if ( bx1[i+1] > -pltmax[0]):
+			if (bx1[i+1] > bx1[i]):
+				pathpoints.append((bx1[i],by1new[i]))
 			else:
-				pass
-				# g.append(shapes.line((x1,y1),(x2,y2)))
-		else:
-			# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
-			pathpoints.append((bx1[i],by1new[i]))
-	g2.append(shapes.path(pathpoints))
+				print(pathpoints)
+				g2.append(shapes.path(pathpoints))
+				pathpoints = []
 
 			# g.append(shapes)
 	# transforms.scale(g/ 4.5)
