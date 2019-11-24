@@ -219,10 +219,10 @@ def renderline(indata, moddata, miny, maxy):
 	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
 	for x in xrange(1,len(inputdata)):
 		for y in xrange(1,len(modulationdata)-2):
-			x1 = -x * 600 / y
-			y1 = (60-c*y)*y+(y*50+(inputdata[x]*5 * modulationdata[y]))
-			x2 = -x * 600 / (y+1)
-			y2 = (60-c*(y+1))* (y+1)+((y+1)*50+(inputdata[x]*5 * modulationdata[y+1]))
+			x1 = -x * compression / y
+			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
+			x2 = -x * compression / (y+1)
+			y2 = (compression/10-c*(y+1))* (y+1)+((y+1)*compression/10+(inputdata[x]*compression/100 * modulationdata[y+1]))
 			# y2 = 0
 			bx1.append(x1)
 			bx2.append(x2)
