@@ -158,6 +158,7 @@ def renderline(indata, moddata, miny, maxy):
 	g = shapes.group([])
 	c = 1.8 #curvature
 	p = -4 #perspective stretch
+	compression = 400
 	# //do perspective correction
 	# modulationdata = remappedmoddata
 	# inputdata = remappedindata
@@ -173,10 +174,10 @@ def renderline(indata, moddata, miny, maxy):
 		# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
 		for x in xrange(1,len(inputdata)-1):
 
-			x1 = -x * 600 / y
-			y1 = (60-c*y)*y+(y*50+(inputdata[x]*5 * modulationdata[y]))
-			x2 = -(x+1)*600/(y)
-			y2 = (60-c*y)*y+(y*50+inputdata[x+1]*5 * modulationdata[y])
+			x1 = -x * compression / y
+			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
+			x2 = -(x+1)*compression/(y)
+			y2 = (compression/10-c*y)*y+(y*compression/10+inputdata[x+1]*compression/100 * modulationdata[y])
 			# print(x1,y1,x2,y2)
 			ax1.append(x1)
 			ax2.append(x2)
