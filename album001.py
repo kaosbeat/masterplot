@@ -170,7 +170,9 @@ def renderline(indata, moddata, miny, maxy):
 	by1 = []
 	by2 = []
 	for y in xrange(1,len(modulationdata)-1):
-		for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+		# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+		for x in xrange(1,len(inputdata)-1):
+
 			x1 = -x * 600 / y
 			y1 = (60-c*y)*y+(y*50+(inputdata[x]*5 * modulationdata[y]))
 			x2 = -(x+1)*600/(y)
@@ -213,7 +215,8 @@ def renderline(indata, moddata, miny, maxy):
 			# g.append(shapes.line((x1,y1),(x2,y2)))
 	# ///we split the loops for effcient polylines construction
 
-	for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+	for x in xrange(1,len(inputdata)-1):
 		for y in xrange(1,len(modulationdata)-2):
 			x1 = -x * 600 / y
 			y1 = (60-c*y)*y+(y*50+(inputdata[x]*5 * modulationdata[y]))
@@ -240,7 +243,7 @@ def renderline(indata, moddata, miny, maxy):
 	by2new = list(map(lambda x: remap(x, minby2, maxby2, miny,maxy), by2))
 
 	pathpoints = []
-	for i in xrange(len(ax1)):
+	for i in xrange(len(bx1)):
 		if ( bx1[i] < -pltmax[0]):
 			if (bx2[i] < -pltmax[0]):
 				pass
@@ -303,8 +306,8 @@ def maintext():
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
 
-inputdata = generatemodulation(20,10, random.randint(1,100), 80)
-modulationdata = generatemodulation(10, 10, random.randint(1,100),100)
+inputdata = generatemodulation(40,10, random.randint(1,100), 80)
+modulationdata = generatemodulation(40, 10, random.randint(1,100),100)
 
 print(inputdata)
 
