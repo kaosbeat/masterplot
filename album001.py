@@ -210,7 +210,7 @@ def renderline(indata, moddata, miny, maxy):
 
 		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
 			pathpoints.append((ax1[i],ay1new[i]))
-	g.append(shapes.path(pathpoints))
+	g.append(shapes.catmull_path(pathpoints))
 
 
 			# g.append(shapes.line((x1,y1),(x2,y2)))
