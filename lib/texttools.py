@@ -8,8 +8,9 @@ import numpy as np
 
 def plotchar(char, size, font, xpos, ypos):
 #code adapted from freetype-py vector example
+#put ttffont in same directory as this file
   global plotter
-  face = freetype.Face(font)
+  face = freetype.Face("lib/" + font)
   face.set_char_size( size*64 )
   face.load_char(char)	
   slot = face.glyph
