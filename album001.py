@@ -289,7 +289,7 @@ def renderline(indata, moddata, miny, maxy):
 		pointsX = []
 		for xi in xrange(len(indata)):
 			x = xi * (200 +random.randint(10,30))
-			y = indata[xi] * moddata[yi]  # + yi*yi/offsetY
+			y = indata[xi] * moddata[yi] + yi*yi/offsetY
 			pointsX.append(x)
 			pointsY.append(y)
 		
