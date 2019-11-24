@@ -306,8 +306,8 @@ def maintext():
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
 
-inputdata = generatemodulation(10,10, random.randint(1,100), 80)
-modulationdata = generatemodulation(40, 10, random.randint(1,100),100)
+inputdata = generatemodulation(40,10, random.randint(1,100), 80)
+modulationdata = generatemodulation(80, 10, random.randint(1,100),100)
 
 print(inputdata)
 
