@@ -201,16 +201,18 @@ def renderline(indata, moddata, miny, maxy):
 
 	pathpoints = []
 	for i in xrange(len(ax1)):
-		if ( ax1[i] < -pltmax[0]):
-			if (ax2[i] < -pltmax[0]):
-				pass
-			else:
-				pass
-				# g.append(shapes.line((x1,y1),(x2,y2)))
-		else:
-
-		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
+		if ( ax1[i] > -pltmax[0]):
 			pathpoints.append((ax1[i],ay1new[i]))
+
+		# 	if (ax2[i] < -pltmax[0]):
+		# 		pass
+		# 	else:
+		# 		pass
+		# 		# g.append(shapes.line((x1,y1),(x2,y2)))
+		else:
+			g1.append(shapes.path(pathpoints))
+			pathpoints = []
+		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
 	g1.append(shapes.catmull_path(pathpoints))
 
 
@@ -272,6 +274,28 @@ def renderline(indata, moddata, miny, maxy):
 	# print(g.width)
 	plotter.write(g1)
 	plotter.write(g2)
+
+def renderline(indata, moddata, miny, maxy):
+	ax1 = []
+	ax2 = []
+	bx1 = []
+	bx2 = []
+	ay1 = []
+	ay2 = []
+	by1 = []
+	by2 = []
+	# pointsH = []
+	g = shapes.group([])
+	random.seed(10)
+	for yi in xrange(len(moddata)):
+		pointsH = []
+		for xi in xrange(len(indata)):
+			x = xi * random.randint(100,300)
+			y = indata[xi] * moddata[yi]
+			pointsH.append((x,y))
+		g.append(shapes.path(pointsH))
+	plotter.write(g)
+
 
 #### text
 def bytext():
