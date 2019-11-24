@@ -120,7 +120,10 @@ inputdata = [0,0,1,3,4,3,5,3,6,3,0,0,0,0,0,0,0,0,2,4,2,4,3,5,4,6,7,9,7,5,3,1,0,0
 modulationdata = [0,0,3,4,4,4,3,2,1,0,0,0,0,1,2,3,4,5,4,3,4,5,0,0,3,4,4,4,3,2,1,0,0,0,0,1,2,3,4,5,4,3,4,5]
 
 def remap(x, in_min, in_max, out_min, out_max):
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+	a = (in_max - in_min) + out_min
+	if (a == 0):
+		a = 0.1
+	return (x - in_min) * (out_max - out_min) / a
 
 
 def generatemodulation(len,range, base, scale):
@@ -276,9 +279,6 @@ def renderline(indata, moddata, miny, maxy):
 	plotter.write(g2)
 
 def renderline(indata, moddata, miny, maxy):
-	minmod = min(moddata)
-	maxmod = max(moddata)
-	newmoddata = list(map(lambda x: remap(x, minmod, maxmod, miny,maxy), moddata))
 	offsetY = 250
 	ax1 = []
 	ax2 = []
@@ -292,12 +292,21 @@ def renderline(indata, moddata, miny, maxy):
 	g = shapes.group([])
 	random.seed(10)
 	for yi in xrange(len(moddata)):
-		pointsH = []
+		pointsY = []
+		pointsX = []
 		for xi in xrange(len(indata)):
 			x = xi * (200 +random.randint(10,30))
-			y = indata[xi] * newmoddata[yi] + yi*yi/offsetY
-			pointsH.append((x,y))
-		g.append(shapes.path(pointsH))
+			y = indata[xi] * moddata[yi]  # + yi*yi/offsetY
+			pointsX.append(x)
+			pointsY.append(y)
+		minY = min(pointsY)
+		maxY = max(pointsY)
+		newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
+		points = []
+		for x in xrange(len(pointsX)):
+			for y in xrange(len(newpointsY)):
+				points.append((x,y))
+		g.append(shapes.path(points))
 	plotter.write(g)
 
 
@@ -350,7 +359,7 @@ modulationdata = generatemodulation(80, 10, random.randint(1,100),100)
 
 print(inputdata)
 
-renderline(inputdata, modulationdata, 0, 5000)
+renderline(inputdata, modulationdata, 10, 5000)
 
 
 # xlen = 10
