@@ -144,10 +144,7 @@ print(len(inputdata))
 
 
 
-inputdata = generatemodulation(89,10, random.randint(1,100), 80)
-modulationdata = generatemodulation(40, 10, random.randint(1,100),100)
 
-print(inputdata)
 
 def renderline(indata, moddata, miny, maxy):
 	# print(len(data))
@@ -210,7 +207,7 @@ def renderline(indata, moddata, miny, maxy):
 
 		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
 			pathpoints.append((ax1[i],ay1new[i]))
-		g.append(shapes.path(pathpoints))
+	g.append(shapes.path(pathpoints))
 
 
 			# g.append(shapes.line((x1,y1),(x2,y2)))
@@ -253,7 +250,7 @@ def renderline(indata, moddata, miny, maxy):
 		else:
 			# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
 			pathpoints.append((bx1[i],by1new[i]))
-		g.append(shapes.path(pathpoints))
+	g.append(shapes.path(pathpoints))
 
 			# g.append(shapes)
 	# transforms.scale(g/ 4.5)
@@ -304,6 +301,12 @@ def maintext():
 # 		plotCircles(1000, x*900, -y*1800, 50, 0)
 # 		plotCircles(900, x*1800, -y*1800, 25, 0)
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
+
+
+inputdata = generatemodulation(20,10, random.randint(1,100), 80)
+modulationdata = generatemodulation(10, 10, random.randint(1,100),100)
+
+print(inputdata)
 
 renderline(inputdata, modulationdata, 0, 5000)
 
