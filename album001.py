@@ -299,7 +299,7 @@ def renderline(indata, moddata, miny, maxy):
 		points = []
 		for x in xrange(len(pointsX)):
 			for y in xrange(len(newpointsY)):
-				points.append((x,y))
+				points.append((pointsX[x],newpointsY[y]))
 		g.append(shapes.path(points))
 	plotter.write(g)
 
