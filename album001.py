@@ -158,7 +158,7 @@ def renderline(indata, moddata, miny, maxy):
 	g = shapes.group([])
 	c = 1.8 #curvature
 	p = -4 #perspective stretch
-	compression = 400
+	compression = 4000
 	# //do perspective correction
 	# modulationdata = remappedmoddata
 	# inputdata = remappedindata
