@@ -280,14 +280,7 @@ def renderline(indata, moddata, miny, maxy):
 
 def renderline(indata, moddata, miny, maxy):
 	offsetY = 250
-	ax1 = []
-	ax2 = []
-	bx1 = []
-	bx2 = []
-	ay1 = []
-	ay2 = []
-	by1 = []
-	by2 = []
+
 	# pointsH = []
 	g = shapes.group([])
 	random.seed(10)
@@ -302,6 +295,7 @@ def renderline(indata, moddata, miny, maxy):
 		minY = min(pointsY)
 		maxY = max(pointsY)
 		newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
+		print(newpointsY)
 		points = []
 		for x in xrange(len(pointsX)):
 			for y in xrange(len(newpointsY)):
