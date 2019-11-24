@@ -52,7 +52,7 @@ globaloffset = (0,0)
 # print plotunits
 plotter.select_pen(1)
 # plotter.margins.hard.draw_outline()
-pltmax = [7000 , 7000]
+pltmax = [9000 , 9000]
 bounds =shapes.rectangle(pltmax[0],pltmax[1])
 transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2) )
 plotter.write(bounds)
