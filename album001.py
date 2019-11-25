@@ -284,7 +284,7 @@ def renderline(indata, moddata, miny, maxy):
 	g = shapes.group([])
 	random.seed(10)
 	for yi in xrange(len(moddata)):
-		yoffset = 1000 * pow(0.95, yi)
+		yoffset = 3000 * pow(0.95, yi)
 		pointsY = []
 		pointsX = []
 		points = []
