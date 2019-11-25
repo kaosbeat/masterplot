@@ -281,9 +281,10 @@ def generatemodulation(len,range, base, scale):
 def renderline(indata, moddata, miny, maxy):
 	# pointsH = []
 	g = shapes.group([])
+	spacing = 0.95
 	# random.seed(10)
 	for yi in xrange(len(moddata)):
-		yoffset = 5000 * pow(0.99, yi)
+		yoffset = 5000 * pow(spacing, yi)
 		points = []
 		for xi in xrange(len(indata)):
 			x = xi * (2000/(yi +1))
@@ -299,7 +300,7 @@ def renderline(indata, moddata, miny, maxy):
 		points = []
 		print(xi)
 		for yi in xrange(len(moddata)):
-			yoffset = 5000 * pow(0.95, yi)
+			yoffset = 5000 * pow(spacing, yi)
 			x = xi * (2000/(yi +1))
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
