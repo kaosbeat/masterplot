@@ -358,7 +358,7 @@ def maintext():
 
 
 inputdata = generatemodulation(40,10, random.randint(1,1000), 800)
-modulationdata = generatemodulation(30, 10, random.randint(1,100),1000)
+modulationdata = generatemodulation(30, 10, random.randint(1,100),10)
 
 # print(inputdata)
 
