@@ -48,14 +48,16 @@ plotunit = 0.025 # 1 coordinate unit per plotter = 0.025 mm
 # plotunits = (10320/432, 7920/297)
 
 globaloffset = (0,0)
-
+preview = shapes.group([])
 # print plotunits
-plotter.select_pen(1)
+# plotter.select_pen(1)
 # plotter.margins.hard.draw_outline()
 pltmax = [9000 , 9000]
 bounds =shapes.rectangle(pltmax[0],pltmax[1])
-transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2) )
-plotter.write(bounds)
+transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2))
+
+preview.append(bounds)
+# plotter.write(bounds)
 
 # plotter.select_pen(2)
 # g = shapes.group([])
@@ -75,7 +77,8 @@ def addAndPlotObject(soort, x, y, size, maxsize, data):
 	if (g.width > maxsize):
 		transforms.scale(g, maxsize/g.width)
 	objects.append({'class': soort, 'x': x, 'y': y, 'size':size, 'data': data })
-	plotter.write(g)
+	preview.append(g)
+	# plotter.write(g)
 
 
 
@@ -89,7 +92,8 @@ def plotSquare(size,x,y,depth, random):
 		g.append(t)
 	print ("offsetting" + str(x))
 	transforms.offset(g,(x,y))
-	plotter.write(g)
+	preview.append(g)
+	# plotter.write(g)
 
 def plotCircles(size, x, y, depth, rdm):
         '''
@@ -103,7 +107,8 @@ def plotCircles(size, x, y, depth, rdm):
 		g.append(t)
 	print ("offsetting" + str(x))
 	transforms.offset(g,(x,y))
-	plotter.write(g)
+	preview.append(g)
+	# plotter.write(g)
 
 def plotPolygons(size, x, y, depth, rdm):
 	g = shapes.group([])
@@ -114,7 +119,8 @@ def plotPolygons(size, x, y, depth, rdm):
 		g.append(t)
 	print ("offsetting" + str(x))
 	transforms.offset(g,(x,y))
-	plotter.write(g)
+	preview.append(g)
+	# plotter.write(g)
 	
 inputdata = [0,0,1,3,4,3,5,3,6,3,0,0,0,0,0,0,0,0,2,4,2,4,3,5,4,6,7,9,7,5,3,1,0,0,0,3,4,3,5,3,6,3,0,0,0,0,0,0,0,0,2,4,2,3,4,3,5,3,6,3,0,0,0,0,0,0,0,0,2,4,2,3,4,3,5,3,6,3,0,0,0,0,0,0,0,0,2,4,2]
 modulationdata = [0,0,3,4,4,4,3,2,1,0,0,0,0,1,2,3,4,5,4,3,4,5,0,0,3,4,4,4,3,2,1,0,0,0,0,1,2,3,4,5,4,3,4,5]
@@ -323,15 +329,18 @@ def bytext():
 	t = shapes.label("recorded in Tushetii Georgia", 0.15, 0.15)
 	transforms.offset(t,(200,300))
 	transforms.offset(t,globaloffset)
-	plotter.write(t)
+	# plotter.write(t)
+	preview.append(t)
 	t = shapes.label("kaotec []<> 2019", 0.15, 0.15)
 	transforms.offset(t,(200,200))
 	transforms.offset(t,globaloffset)
-	plotter.write(t)
+	# plotter.write(t)
+	preview.append(t)
 	t = shapes.label("bandcamp downloadcode XXXX-XXXX", 0.15, 0.15)
 	transforms.offset(t,(200,-100))
 	transforms.offset(t,globaloffset)
-	plotter.write(t)
+	preview.append(t)
+	# plotter.write(t)
 
 def maintext():
 	maintext = shapes.group([])
@@ -351,7 +360,8 @@ def maintext():
 
 	transforms.scale(maintext, 0.5)
 	transforms.offset(maintext, (0,2500))
-	plotter.write(maintext)
+	preview.append(maintext)
+	# plotter.write(maintext)
 # print(generatemodulation(40,10))
 
 # for x in xrange(1,2):
@@ -368,7 +378,8 @@ modulationdata = generatemodulation(90, 10, random.randint(1,100),1600)
 # print(inputdata)
 
 r = renderline(inputdata, modulationdata, 10, 5000)
-plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
+preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
+# plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 
 # xlen = 10
 # ylen = 10
@@ -384,10 +395,12 @@ plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 
 bytext()
 maintext()
+preview.append(sign("album001cover test", pltmax[0]+100, 100 ))
+# plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
 
-plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
-io.export(plotter, filename, fmt='jpg')
-io.export(plotter, filename, fmt='svg')
-io.view(plotter)
+io.view(preview)
+io.export(preview, filename, fmt='jpg')
+io.export(preview, filename, fmt='svg')
+io.view(preview)
 
 
