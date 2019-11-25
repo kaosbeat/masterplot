@@ -304,9 +304,10 @@ def renderline(indata, moddata, miny, maxy):
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
 				points.append((x,y))
-			# elif (points[-1][0] != pltmax[0]):
-			# 	y = yoffset + indata[xi]* moddata[yi]
-			# 	points.append((pltmax[0],y))
+			elif (len(points) > 2): 
+				if (points[-1][0] != pltmax[0]):
+					y = yoffset + indata[xi]* moddata[yi]
+					points.append((pltmax[0],y))
 		f.append(shapes.path(points))
 	plotter.write(g)
 	plotter.write(f)
