@@ -280,19 +280,19 @@ def renderline(indata, moddata, miny, maxy):
 
 def renderline(indata, moddata, miny, maxy):
 	offsetY = 250
-
 	# pointsH = []
 	g = shapes.group([])
 	random.seed(10)
 	for yi in xrange(len(moddata)):
-		yoffset = yi*yi/100
+		yoffset = yi*100
 		pointsY = []
 		pointsX = []
 		points = []
 		for xi in xrange(len(indata)):
-			x = xi * (200/(yi +1))
-			y = yoffset + indata[xi]*moddata[yi]
-			points.append((x,y))
+			x = xi * (2000/(yi +1))
+			if (x < pltmax[0]):
+				y = yoffset + indata[xi]* moddata[yi]
+				points.append((x,y))
 		# 	x = xi * (200 +random.randint(10,30))
 		# 	y = indata[xi] * moddata[yi] + yi*yi/offsetY
 		# 	pointsX.append(x)
@@ -355,7 +355,7 @@ def maintext():
 
 
 inputdata = generatemodulation(40,10, random.randint(1,100), 80)
-modulationdata = generatemodulation(80, 10, random.randint(1,100),100)
+modulationdata = generatemodulation(30, 10, random.randint(1,100),100)
 
 print(inputdata)
 
