@@ -54,7 +54,7 @@ plotter.select_pen(1)
 # plotter.margins.hard.draw_outline()
 pltmax = [9000 , 9000]
 bounds =shapes.rectangle(pltmax[0],pltmax[1])
-transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2) )
+# transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2) )
 plotter.write(bounds)
 
 # plotter.select_pen(2)
@@ -362,7 +362,7 @@ def maintext():
 
 
 inputdata = generatemodulation(40,10, random.randint(1,1000), 80)
-modulationdata = generatemodulation(90, 10, random.randint(1,100),1500)
+modulationdata = generatemodulation(90, 10, random.randint(1,100),1000)
 
 # print(inputdata)
 
