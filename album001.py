@@ -300,13 +300,13 @@ def renderline(indata, moddata, miny, maxy):
 		print(xi)
 		for yi in xrange(len(moddata)):
 			yoffset = 5000 * pow(0.99, yi)
-			x = xi * (200/(yi +1))
+			x = xi * (2000/(yi +1))
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
 				points.append((x,y))
-			elif (points[-1][0] != pltmax[0]):
-				y = yoffset + indata[xi]* moddata[yi]
-				points.append((pltmax[0],y))
+			# elif (points[-1][0] != pltmax[0]):
+			# 	y = yoffset + indata[xi]* moddata[yi]
+			# 	points.append((pltmax[0],y))
 		f.append(shapes.path(points))
 	plotter.write(g)
 	plotter.write(f)
