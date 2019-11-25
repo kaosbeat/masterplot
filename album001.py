@@ -55,8 +55,11 @@ preview = shapes.group([])
 pltmax = [9000 , 9000]
 bounds =shapes.rectangle(pltmax[0],pltmax[1])
 transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2))
+plotOutline = True
 
-preview.append(bounds)
+if (plotOutline):
+	preview.append(bounds)
+
 # plotter.write(bounds)
 
 # plotter.select_pen(2)
@@ -287,9 +290,6 @@ def generatemodulation(len,range, base, scale):
 def renderline(indata, moddata, miny, maxy):
 	# pointsH = []
 	g = shapes.group([])
-	spacingA = -5000
-	spacingB = 0.95
-	spacingC = 1500
 	# random.seed(10)
 	for yi in xrange(len(moddata)):
 		yoffset = spacingA * pow(spacingB, yi)
@@ -298,9 +298,19 @@ def renderline(indata, moddata, miny, maxy):
 			x = xi * (spacingC/(yi +1))
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
+				if (y > maxy):
+					y = maxy - (y - maxy)
+				if (y < miny):
+					y = miny + (miny - y)
+				# y=y*-1
 				points.append((x,y))
 			elif (points[-1][0] != pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
+				if (y > maxy):
+					y = maxy - (y - maxy)
+				if (y < miny):
+					y = miny + (miny - y)
+				# y = y*-1
 				points.append((pltmax[0],y))
 		g.append(shapes.path(points))
 	f = shapes.group([])
@@ -312,11 +322,21 @@ def renderline(indata, moddata, miny, maxy):
 			x = xi * (spacingC/(yi +1))
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
+				if (y > maxy):
+					y = maxy - (y - maxy)
+				if (y < miny):
+					y = miny + (miny - y)
+				# y = y*-1
 				points.append((x,y))
-			elif (len(points) > 2): 
+			elif (len(points) > 1): 
 				if (points[-1][0] != pltmax[0]):
 					y = yoffset + indata[xi]* moddata[yi]
-					points.append((pltmax[0],y))
+				if (y > maxy):
+					y = maxy - (y - maxy)
+				if (y < miny):
+					y = miny + (miny - y)
+				# y=y*-1
+				points.append((pltmax[0],y))
 		f.append(shapes.path(points))
 	g.append(f)
 	return g
@@ -324,44 +344,50 @@ def renderline(indata, moddata, miny, maxy):
 	# plotter.write(f)
 
 #### text
-def bytext():
+def bytext(start, end):
 	plotter.select_pen(2)
+	t = shapes.label(str(start) + "/" + str(end), 0.15, 0.15)
+	transforms.offset(t,(200,0))
+	transforms.offset(t,globaloffset)
+	plotter.write(t)
 	t = shapes.label("recorded in Tushetii Georgia", 0.15, 0.15)
-	transforms.offset(t,(200,300))
+	transforms.offset(t,(1200,0))
 	transforms.offset(t,globaloffset)
-	# plotter.write(t)
-	preview.append(t)
+	plotter.write(t)
+	# preview.append(t)
 	t = shapes.label("kaotec []<> 2019", 0.15, 0.15)
-	transforms.offset(t,(200,200))
+	transforms.offset(t,(4200,0))
 	transforms.offset(t,globaloffset)
-	# plotter.write(t)
-	preview.append(t)
+	plotter.write(t)
+	# preview.append(t)
 	t = shapes.label("bandcamp downloadcode XXXX-XXXX", 0.15, 0.15)
-	transforms.offset(t,(200,-100))
+	transforms.offset(t,(5200,0))
 	transforms.offset(t,globaloffset)
-	preview.append(t)
-	# plotter.write(t)
+	# preview.append(t)
+	plotter.write(t)
+
 
 def maintext():
 	maintext = shapes.group([])
-	mainoffset=(4500,3400)
-	font = "neon.ttf"
+	mainoffset=(12500,3400)
+	font = "sqd.ttf"
+	fontsize = 7
 
-	maintext.append(writeword("ElfenWander", 6, font, mainoffset[0],mainoffset[1]+3100))
-	maintext.append(writeword("DistressFrequency", 6, font, mainoffset[0],mainoffset[1]+2600))
-	maintext.append(writeword("TheEdgeOfWhatIs", 6, font, mainoffset[0],mainoffset[1]+2100))
-	maintext.append(writeword("Administratively", 6, font, mainoffset[0],mainoffset[1]+1800))
-	maintext.append(writeword("Possible", 6, font, mainoffset[0],mainoffset[1]+1500))
-	maintext.append(writeword("SineRave", 6, font, mainoffset[0],mainoffset[1]+1000))
-	maintext.append(writeword("Palonopsia", 6, font, mainoffset[0],mainoffset[1]+500))
-	maintext.append(writeword("MountainDrone", 6, font, mainoffset[0],mainoffset[1]))
+	maintext.append(writeword("ElfenWander", fontsize, font, mainoffset[0],mainoffset[1]+3100))
+	maintext.append(writeword("DistressFrequency", fontsize, font, mainoffset[0],mainoffset[1]+2600))
+	maintext.append(writeword("TheEdgeOfWhatIs", fontsize, font, mainoffset[0],mainoffset[1]+2100))
+	maintext.append(writeword("Administratively", fontsize, font, mainoffset[0],mainoffset[1]+1800))
+	maintext.append(writeword("Possible", fontsize, font, mainoffset[0],mainoffset[1]+1500))
+	maintext.append(writeword("SineRave", fontsize, font, mainoffset[0],mainoffset[1]+1000))
+	maintext.append(writeword("Palonopsia", fontsize, font, mainoffset[0],mainoffset[1]+500))
+	maintext.append(writeword("MountainDrone", fontsize, font, mainoffset[0],mainoffset[1]))
 
 	maintext.append(writeword("KAOTEC__Modular_Mountains", 10, "subatomic.ttf", 7200,10500))
 
 	transforms.scale(maintext, 0.5)
 	transforms.offset(maintext, (0,2500))
-	preview.append(maintext)
-	# plotter.write(maintext)
+	# preview.append(maintext)
+	plotter.write(maintext)
 # print(generatemodulation(40,10))
 
 # for x in xrange(1,2):
@@ -371,15 +397,12 @@ def maintext():
 # 		plotCircles(900, x*1800, -y*1800, 25, 0)
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
-
-inputdata = generatemodulation(140,10, random.randint(1,1000), 80)
-modulationdata = generatemodulation(90, 10, random.randint(1,100),1600)
-
-# print(inputdata)
-
-r = renderline(inputdata, modulationdata, 10, 5000)
-preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
-# plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
+def generateBackground():
+	inputdata = generatemodulation(50,10, random.randint(1,100), 80)
+	modulationdata = generatemodulation(30, 10, random.randint(1,100),900)
+	r = renderline(inputdata, modulationdata, -1000, 6000)
+	preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
+	# plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 
 # xlen = 10
 # ylen = 10
@@ -393,13 +416,48 @@ preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 # p = shapes.path([(0,0), (2500,1000), (5000,5000) ])
 # plotter.write(p)
 
-bytext()
-maintext()
-preview.append(sign("album001cover test", pltmax[0]+100, 100 ))
-# plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
 
-io.export(preview, filename, fmt='jpg')
-io.export(preview, filename, fmt='svg')
-io.view(preview)
+# preview.append(sign("album001cover test", pltmax[0]+100, 100 ))
+
+
+
+spacingA = 10000
+spacingB = 0.99
+spacingC = 1500
+print('startnumber/stopnumber will be plotted')
+startnumber = input('enter startnumber: ')
+stopnumber = input('enter stopnumber (eg. 300): ')
+for x in xrange(startnumber,stopnumber):
+	random.seed(startnumber + x)
+	preview = shapes.group([])
+	generateBackground()
+	io.view(preview)
+	print("spacingA = " + str(spacingA))
+	print("spacingB = " + str(spacingB))
+	print("spacingC = " + str(spacingC))
+	ready = input('drawing ok? press 1 to continue, press 2 for rerun:, press 3 for new parameters')
+	print(ready)
+	if(ready == 1):
+		plotter.write(preview)
+		bytext(startnumber, stopnumber)
+		maintext()
+		plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
+		io.export(plotter, filename, fmt='jpg')
+		io.export(plotter, filename, fmt='svg')
+		io.view(plotter)
+		startnumber = startnumber + 1
+		plotter.clear()
+	if(ready == 2):
+		print "rerunning"
+
+	if (ready == 3):
+		spacingA = int(raw_input("spacingA: " + str(spacingA) + "new value?") or spacingA)
+		spacingB = float(raw_input("spacingB: " + str(spacingB) + "new value?") or spacingB)
+		spacingC = int(raw_input("spacingC: " + str(spacingC) + "new value?") or spacingC)
+
+	else:
+		print('press CTRL-C')
+
+
 
 
