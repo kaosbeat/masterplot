@@ -361,7 +361,7 @@ def maintext():
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
 
-inputdata = generatemodulation(40,10, random.randint(1,1000), 80)
+inputdata = generatemodulation(140,10, random.randint(1,1000), 80)
 modulationdata = generatemodulation(90, 10, random.randint(1,100),1000)
 
 # print(inputdata)
