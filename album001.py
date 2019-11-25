@@ -335,7 +335,7 @@ def bytext():
 
 def maintext():
 	maintext = shapes.group([])
-	mainoffset=(500,3400)
+	mainoffset=(4500,3400)
 
 	maintext.append(writeword("ElfenWander", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+3100))
 	maintext.append(writeword("DistressFrequency", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+2600))
@@ -346,7 +346,7 @@ def maintext():
 	maintext.append(writeword("Palonopsia", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+500))
 	maintext.append(writeword("MountainDrone", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]))
 
-	maintext.append(writeword("KAOTEC-album001", 10, "subatomic.ttf", mainoffset[0]-200,mainoffset[1]+ 4000))
+	maintext.append(writeword("KAOTEC-ModularMountains", 10, "subatomic.ttf", 5200,8500))
 
 	transforms.scale(maintext, 0.5)
 	transforms.offset(maintext, (0,2500))
