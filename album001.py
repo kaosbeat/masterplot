@@ -130,7 +130,7 @@ def generatemodulation(len,range, base, scale):
 	a = []
 	for x in xrange(len):
 		# a.append(random.randint(0,range))
-		print(x)
+		# print(x)
 		v = scale * pnoise1(float(x + base) / len, 16)
 		# if (v < 0):
 		# 	v = v*0.01
@@ -141,152 +141,149 @@ def generatemodulation(len,range, base, scale):
 
 
 
-print(len(inputdata))
+# print(len(inputdata))
 
 
 
 
 
 
+
+# def renderline(indata, moddata, miny, maxy):
+# 	# print(len(data))
+# 	# minindata = min(indata)
+# 	# maxindata = max(indata)
+# 	# remappedindata = list(map(lambda x: remap(x, minindata, maxindata, miny, maxy), indata))
+# 	# print(remappedindata)
+# 	# minmoddata = min(moddata)
+# 	# maxmoddata = max(moddata)
+# 	# remappedmoddata = list(map(lambda x: remap(x, minmoddata, maxmoddata, miny, maxy), moddata))
+# 	g1 = shapes.group([])
+# 	g2 = shapes.group([])
+# 	c = 1.8 #curvature
+# 	p = -4 #perspective stretch
+# 	compression = 4000
+# 	# //do perspective correction
+# 	# modulationdata = remappedmoddata
+# 	# inputdata = remappedindata
+# 	ax1 = []
+# 	ax2 = []
+# 	bx1 = []
+# 	bx2 = []
+# 	ay1 = []
+# 	ay2 = []
+# 	by1 = []
+# 	by2 = []
+# 	for y in xrange(1,len(modulationdata)-1):
+# 		# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+# 		for x in xrange(1,len(inputdata)-1):
+
+# 			x1 = -x * compression / y
+# 			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
+# 			x2 = -(x+1)*compression/(y)
+# 			y2 = (compression/10-c*y)*y+(y*compression/10+inputdata[x+1]*compression/100 * modulationdata[y])
+# 			# print(x1,y1,x2,y2)
+# 			ax1.append(x1)
+# 			ax2.append(x2)
+# 			ay1.append(y1)
+# 			ay2.append(y2)
+# 			# y2 = 5000
+# 			# if ( x1 < -pltmax[0]):
+# 			# 	if (x2 < -pltmax[0]):
+# 			# 		pass
+# 			# 	else:
+# 			# 		g.append(shapes.line((x1,y1),(pltmax[0],y2)))
+# 			# else:
+# 			# 	g.append(shapes.line((x1,y1),(x2,y2)))
+# 	minay1 = min(ay1)
+# 	maxay1 = max(ay1)
+# 	ay1new = list(map(lambda x: remap(x, minay1, maxay1, miny,maxy), ay1))
+# 	minay2 = min(ay2)
+# 	maxay2 = max(ay2)
+# 	ay2new = list(map(lambda x: remap(x, minay2, maxay2, miny,maxy), ay2))
+
+# 	pathpoints = []
+# 	for i in xrange(len(ax1)):
+# 		if ( ax1[i] > -pltmax[0]):
+# 			pathpoints.append((ax1[i],ay1new[i]))
+
+# 		# 	if (ax2[i] < -pltmax[0]):
+# 		# 		pass
+# 		# 	else:
+# 		# 		pass
+# 		# 		# g.append(shapes.line((x1,y1),(x2,y2)))
+# 		else:
+# 			g1.append(shapes.path(pathpoints))
+# 			pathpoints = []
+# 		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
+# 	g1.append(shapes.catmull_path(pathpoints))
+
+
+# 			# g.append(shapes.line((x1,y1),(x2,y2)))
+# 	# ///we split the loops for effcient polylines construction
+
+# 	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
+# 	for x in xrange(1,len(inputdata)):
+# 		for y in xrange(1,len(modulationdata)-2):
+# 			x1 = -x * compression / y
+# 			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
+# 			x2 = -x * compression / (y+1)
+# 			y2 = (compression/10-c*(y+1))* (y+1)+((y+1)*compression/10+(inputdata[x]*compression/100 * modulationdata[y+1]))
+# 			# y2 = 0
+# 			bx1.append(x1)
+# 			bx2.append(x2)
+# 			by1.append(y1)
+# 			by2.append(y2)
+# 			# if ( x1 < -pltmax[0]):
+# 			# 	if (x2 < -pltmax[0]):
+# 			# 		pass
+# 			# 	else:
+# 			# 		pass
+# 			# 		# g.append(shapes.line((x1,y1),(x2,y2)))
+# 			# else:
+# 			# 	g.append(shapes.line((x1,y1),(x2,y2)))
+# 	minby1 = min(by1)
+# 	maxby1 = max(by1)
+# 	by1new = list(map(lambda x: remap(x, minby1, maxby1, miny,maxy), by1))
+# 	minby2 = min(by2)
+# 	maxby2 = max(by2)
+# 	by2new = list(map(lambda x: remap(x, minby2, maxby2, miny,maxy), by2))
+
+# 	pathpoints = []
+# 	# for i in xrange(len(bx1)):
+# 	# 	if ( bx1[i] < -pltmax[0]):
+# 	# 		if (bx2[i] < -pltmax[0]):
+# 	# 			pass
+# 	# 		else:
+# 	# 			pass
+# 	# 			# g.append(shapes.line((x1,y1),(x2,y2)))
+# 	# 	else:
+# 	# 		# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
+# 	# 		pathpoints.append((bx1[i],by1new[i]))
+# 	for i in xrange(len(bx1)-1):
+# 		if ( bx1[i+1] > -pltmax[0]):
+# 			if (bx1[i+1] > bx1[i]):
+# 				pathpoints.append((bx1[i],by1new[i]))
+# 			else:
+# 				print(pathpoints)
+# 				g2.append(shapes.path(pathpoints))
+# 				pathpoints = []
+
+# 			# g.append(shapes)
+# 	# transforms.scale(g/ 4.5)
+# 	# transforms.rotate(g,90)
+# 	transforms.offset(g1, (pltmax[0],0))
+# 	transforms.offset(g2, (pltmax[0],0))
+# 	# print(g.width)
+# 	plotter.write(g1)
+# 	plotter.write(g2)
 
 def renderline(indata, moddata, miny, maxy):
-	# print(len(data))
-	# minindata = min(indata)
-	# maxindata = max(indata)
-	# remappedindata = list(map(lambda x: remap(x, minindata, maxindata, miny, maxy), indata))
-	# print(remappedindata)
-	# minmoddata = min(moddata)
-	# maxmoddata = max(moddata)
-	# remappedmoddata = list(map(lambda x: remap(x, minmoddata, maxmoddata, miny, maxy), moddata))
-	g1 = shapes.group([])
-	g2 = shapes.group([])
-	c = 1.8 #curvature
-	p = -4 #perspective stretch
-	compression = 4000
-	# //do perspective correction
-	# modulationdata = remappedmoddata
-	# inputdata = remappedindata
-	ax1 = []
-	ax2 = []
-	bx1 = []
-	bx2 = []
-	ay1 = []
-	ay2 = []
-	by1 = []
-	by2 = []
-	for y in xrange(1,len(modulationdata)-1):
-		# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
-		for x in xrange(1,len(inputdata)-1):
-
-			x1 = -x * compression / y
-			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
-			x2 = -(x+1)*compression/(y)
-			y2 = (compression/10-c*y)*y+(y*compression/10+inputdata[x+1]*compression/100 * modulationdata[y])
-			# print(x1,y1,x2,y2)
-			ax1.append(x1)
-			ax2.append(x2)
-			ay1.append(y1)
-			ay2.append(y2)
-			# y2 = 5000
-			# if ( x1 < -pltmax[0]):
-			# 	if (x2 < -pltmax[0]):
-			# 		pass
-			# 	else:
-			# 		g.append(shapes.line((x1,y1),(pltmax[0],y2)))
-			# else:
-			# 	g.append(shapes.line((x1,y1),(x2,y2)))
-	minay1 = min(ay1)
-	maxay1 = max(ay1)
-	ay1new = list(map(lambda x: remap(x, minay1, maxay1, miny,maxy), ay1))
-	minay2 = min(ay2)
-	maxay2 = max(ay2)
-	ay2new = list(map(lambda x: remap(x, minay2, maxay2, miny,maxy), ay2))
-
-	pathpoints = []
-	for i in xrange(len(ax1)):
-		if ( ax1[i] > -pltmax[0]):
-			pathpoints.append((ax1[i],ay1new[i]))
-
-		# 	if (ax2[i] < -pltmax[0]):
-		# 		pass
-		# 	else:
-		# 		pass
-		# 		# g.append(shapes.line((x1,y1),(x2,y2)))
-		else:
-			g1.append(shapes.path(pathpoints))
-			pathpoints = []
-		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
-	g1.append(shapes.catmull_path(pathpoints))
-
-
-			# g.append(shapes.line((x1,y1),(x2,y2)))
-	# ///we split the loops for effcient polylines construction
-
-	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
-	for x in xrange(1,len(inputdata)):
-		for y in xrange(1,len(modulationdata)-2):
-			x1 = -x * compression / y
-			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
-			x2 = -x * compression / (y+1)
-			y2 = (compression/10-c*(y+1))* (y+1)+((y+1)*compression/10+(inputdata[x]*compression/100 * modulationdata[y+1]))
-			# y2 = 0
-			bx1.append(x1)
-			bx2.append(x2)
-			by1.append(y1)
-			by2.append(y2)
-			# if ( x1 < -pltmax[0]):
-			# 	if (x2 < -pltmax[0]):
-			# 		pass
-			# 	else:
-			# 		pass
-			# 		# g.append(shapes.line((x1,y1),(x2,y2)))
-			# else:
-			# 	g.append(shapes.line((x1,y1),(x2,y2)))
-	minby1 = min(by1)
-	maxby1 = max(by1)
-	by1new = list(map(lambda x: remap(x, minby1, maxby1, miny,maxy), by1))
-	minby2 = min(by2)
-	maxby2 = max(by2)
-	by2new = list(map(lambda x: remap(x, minby2, maxby2, miny,maxy), by2))
-
-	pathpoints = []
-	# for i in xrange(len(bx1)):
-	# 	if ( bx1[i] < -pltmax[0]):
-	# 		if (bx2[i] < -pltmax[0]):
-	# 			pass
-	# 		else:
-	# 			pass
-	# 			# g.append(shapes.line((x1,y1),(x2,y2)))
-	# 	else:
-	# 		# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
-	# 		pathpoints.append((bx1[i],by1new[i]))
-	for i in xrange(len(bx1)-1):
-		if ( bx1[i+1] > -pltmax[0]):
-			if (bx1[i+1] > bx1[i]):
-				pathpoints.append((bx1[i],by1new[i]))
-			else:
-				print(pathpoints)
-				g2.append(shapes.path(pathpoints))
-				pathpoints = []
-
-			# g.append(shapes)
-	# transforms.scale(g/ 4.5)
-	# transforms.rotate(g,90)
-	transforms.offset(g1, (pltmax[0],0))
-	transforms.offset(g2, (pltmax[0],0))
-	# print(g.width)
-	plotter.write(g1)
-	plotter.write(g2)
-
-def renderline(indata, moddata, miny, maxy):
-	offsetY = 250
 	# pointsH = []
 	g = shapes.group([])
-	random.seed(10)
+	# random.seed(10)
 	for yi in xrange(len(moddata)):
 		yoffset = 5000 * pow(0.99, yi)
-		pointsY = []
-		pointsX = []
 		points = []
 		for xi in xrange(len(indata)):
 			x = xi * (2000/(yi +1))
@@ -295,24 +292,24 @@ def renderline(indata, moddata, miny, maxy):
 				points.append((x,y))
 			elif (points[-1][0] != pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
-				points.append((pltmax[0],y))	
-
-		# 	x = xi * (200 +random.randint(10,30))
-		# 	y = indata[xi] * moddata[yi] + yi*yi/offsetY
-		# 	pointsX.append(x)
-		# 	pointsY.append(y)
-		
-		# minY = min(pointsY)
-		# maxY = max(pointsY)
-		# newpointsY= list(map(lambda x: remap(x, minY, maxY, miny,maxy), pointsY))
-		# print(newpointsY)
-		# points = []
-		# for x in xrange(10):
-		# 	for y in xrange(len(newpointsY)):
-		# 		points.append((pointsX[x],pointsY[y]))
+				points.append((pltmax[0],y))
 		g.append(shapes.path(points))
+	f = shapes.group([])
+	for xi in xrange(len(indata)):
+		points = []
+		print(xi)
+		for yi in xrange(len(moddata)):
+			yoffset = 5000 * pow(0.99, yi)
+			x = xi * (200/(yi +1))
+			if (x < pltmax[0]):
+				y = yoffset + indata[xi]* moddata[yi]
+				points.append((x,y))
+			elif (points[-1][0] != pltmax[0]):
+				y = yoffset + indata[xi]* moddata[yi]
+				points.append((pltmax[0],y))
+		f.append(shapes.path(points))
 	plotter.write(g)
-
+	plotter.write(f)
 
 #### text
 def bytext():
@@ -361,7 +358,7 @@ def maintext():
 inputdata = generatemodulation(40,10, random.randint(1,100), 80)
 modulationdata = generatemodulation(30, 10, random.randint(1,100),100)
 
-print(inputdata)
+# print(inputdata)
 
 renderline(inputdata, modulationdata, 10, 5000)
 
