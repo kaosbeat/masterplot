@@ -10,7 +10,7 @@ from chiplotle.geometry.core.label import Label
 from chiplotle.core.interfaces.interface import _Interface
 from chiplotle.plotters.margins.marginssoft import MarginsSoft
 from chiplotle.plotters.margins.marginshard import MarginsHard
-from lib.plothelpers import sign
+from lib.plothelpers import sign, plotgroup
 from lib.texttools import writeword
 # from lib.perlin import writeword
 import sys
@@ -310,8 +310,10 @@ def renderline(indata, moddata, miny, maxy):
 					y = yoffset + indata[xi]* moddata[yi]
 					points.append((pltmax[0],y))
 		f.append(shapes.path(points))
-	plotter.write(g)
-	plotter.write(f)
+	g.append(f)
+	return g
+	# plotter.write(g)
+	# plotter.write(f)
 
 #### text
 def bytext():
@@ -362,8 +364,8 @@ modulationdata = generatemodulation(30, 10, random.randint(1,100),10)
 
 # print(inputdata)
 
-renderline(inputdata, modulationdata, 10, 5000)
-
+r = renderline(inputdata, modulationdata, 10, 5000)
+plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 
 # xlen = 10
 # ylen = 10
