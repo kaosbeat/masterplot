@@ -43,15 +43,6 @@ from scipy import signal
 import freetype
 
 
-
-
-
-
-
-
-
-
-
 def dosquare1():
     l = shapes.group([])
     size = 1000
