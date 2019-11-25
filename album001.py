@@ -336,17 +336,18 @@ def bytext():
 def maintext():
 	maintext = shapes.group([])
 	mainoffset=(4500,3400)
+	font = "neon.ttf"
 
-	maintext.append(writeword("ElfenWander", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+3100))
-	maintext.append(writeword("DistressFrequency", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+2600))
-	maintext.append(writeword("TheEdgeOfWhatIs", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+2100))
-	maintext.append(writeword("Administratively", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+1800))
-	maintext.append(writeword("Possible", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+1500))
-	maintext.append(writeword("SineRave", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+1000))
-	maintext.append(writeword("Palonopsia", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]+500))
-	maintext.append(writeword("MountainDrone", 6, "magnetar.ttf", mainoffset[0],mainoffset[1]))
+	maintext.append(writeword("ElfenWander", 6, font, mainoffset[0],mainoffset[1]+3100))
+	maintext.append(writeword("DistressFrequency", 6, font, mainoffset[0],mainoffset[1]+2600))
+	maintext.append(writeword("TheEdgeOfWhatIs", 6, font, mainoffset[0],mainoffset[1]+2100))
+	maintext.append(writeword("Administratively", 6, font, mainoffset[0],mainoffset[1]+1800))
+	maintext.append(writeword("Possible", 6, font, mainoffset[0],mainoffset[1]+1500))
+	maintext.append(writeword("SineRave", 6, font, mainoffset[0],mainoffset[1]+1000))
+	maintext.append(writeword("Palonopsia", 6, font, mainoffset[0],mainoffset[1]+500))
+	maintext.append(writeword("MountainDrone", 6, font, mainoffset[0],mainoffset[1]))
 
-	maintext.append(writeword("KAOTEC-ModularMountains", 10, "subatomic.ttf", 5200,8500))
+	maintext.append(writeword("KAOTEC__Modular_Mountains", 10, "subatomic.ttf", 7200,10500))
 
 	transforms.scale(maintext, 0.5)
 	transforms.offset(maintext, (0,2500))
