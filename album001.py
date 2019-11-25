@@ -293,6 +293,10 @@ def renderline(indata, moddata, miny, maxy):
 			if (x < pltmax[0]):
 				y = yoffset + indata[xi]* moddata[yi]
 				points.append((x,y))
+			elif (points[-1][0] != pltmax[0]):
+				y = yoffset + indata[xi]* moddata[yi]
+				points.append((x,y))	
+
 		# 	x = xi * (200 +random.randint(10,30))
 		# 	y = indata[xi] * moddata[yi] + yi*yi/offsetY
 		# 	pointsX.append(x)
