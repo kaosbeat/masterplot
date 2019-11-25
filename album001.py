@@ -284,7 +284,7 @@ def renderline(indata, moddata, miny, maxy):
 	spacing = 0.95
 	# random.seed(10)
 	for yi in xrange(len(moddata)):
-		yoffset = 5000 * pow(spacing, yi)
+		yoffset = -5000 * pow(spacing, yi)
 		points = []
 		for xi in xrange(len(indata)):
 			x = xi * (2000/(yi +1))
