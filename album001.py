@@ -398,7 +398,6 @@ maintext()
 preview.append(sign("album001cover test", pltmax[0]+100, 100 ))
 # plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
 
-io.view(preview)
 io.export(preview, filename, fmt='jpg')
 io.export(preview, filename, fmt='svg')
 io.view(preview)
