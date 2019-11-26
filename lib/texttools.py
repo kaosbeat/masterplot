@@ -66,17 +66,27 @@ def plotchar(char, size, font, xpos, ypos):
 
 
   # print VERTS
+def writewordold(textstring, size, font, xpos, ypos):
+    word = shapes.group([])
+    print (textstring)
+    tt = xpos
+    for char in textstring:
+        c = plotchar(char, size, font, tt, ypos)
+        tt = tt + c[1] 
+        word.append(c[0])
+    return(word)
+
+
+  # print VERTS
 def writeword(textstring, size, font, xpos, ypos):
     word = shapes.group([])
     print (textstring)
     tt = xpos
     for char in textstring:
         c = plotchar(char, size, font, tt, ypos)
-        tt = tt + c[1]
+        tt = tt + c[1] + size*25
         word.append(c[0])
     return(word)
-
-
 
 
 

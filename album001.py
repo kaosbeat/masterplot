@@ -360,9 +360,9 @@ def bytext(start, end):
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	# preview.append(t)
-	t = shapes.label("bandcamp downloadcode XXXX-XXXX", 0.15, 0.15)
-	transforms.offset(t,(5200,0))
-	transforms.offset(t,globaloffset)
+	# t = shapes.label("bandcamp downloadcode XXXX-XXXX", 0.15, 0.15)
+	# transforms.offset(t,(5200,0))
+	# transforms.offset(t,globaloffset)
 	# preview.append(t)
 	plotter.write(t)
 
@@ -384,8 +384,8 @@ def maintext():
 
 	maintext.append(writeword("KAOTEC__Modular_Mountains", 10, "subatomic.ttf", 7200,10500))
 
-	transforms.scale(maintext, 0.5)
-	transforms.offset(maintext, (0,2500))
+	transforms.scale(maintext, 0.8)
+	transforms.offset(maintext, (-5000,0))
 	# preview.append(maintext)
 	plotter.write(maintext)
 # print(generatemodulation(40,10))
