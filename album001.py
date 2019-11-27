@@ -60,7 +60,7 @@ plotOutline = True
 if (plotOutline):
 	preview.append(bounds)
 
-# plotter.write(bounds)
+plotter.write(bounds)
 
 # plotter.select_pen(2)
 # g = shapes.group([])
@@ -347,16 +347,21 @@ def renderline(indata, moddata, miny, maxy):
 def bytext(start, end):
 	plotter.select_pen(2)
 	t = shapes.label(str(start) + "/" + str(end), 0.15, 0.15)
-	transforms.offset(t,(200,0))
+	transforms.offset(t,(200,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
-	t = shapes.label("recorded in Tushetii Georgia", 0.15, 0.15)
-	transforms.offset(t,(1200,0))
+	t = shapes.label("recorded in AQTushetii Georgia", 0.15, 0.15)
+	transforms.offset(t,(1200,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	# preview.append(t)
 	t = shapes.label("kaotec []<> 2019", 0.15, 0.15)
-	transforms.offset(t,(4200,0))
+	transforms.offset(t,(4200,50))
+	transforms.offset(t,globaloffset)
+	plotter.write(t)
+
+	t = shapes.label("now is the right moment to say wow", 0.15, 0.15)
+	transforms.offset(t,(5800,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	# preview.append(t)
@@ -369,26 +374,46 @@ def bytext(start, end):
 
 def maintext():
 	maintext = shapes.group([])
-	mainoffset=(12500,3400)
+	mainoffset=(17500,4400)
 	font = "sqd.ttf"
 	fontsize = 7
 
-	maintext.append(writeword("ElfenWander", fontsize, font, mainoffset[0],mainoffset[1]+3100))
-	maintext.append(writeword("DistressFrequency", fontsize, font, mainoffset[0],mainoffset[1]+2600))
-	maintext.append(writeword("TheEdgeOfWhatIs", fontsize, font, mainoffset[0],mainoffset[1]+2100))
-	maintext.append(writeword("Administratively", fontsize, font, mainoffset[0],mainoffset[1]+1800))
-	maintext.append(writeword("Possible", fontsize, font, mainoffset[0],mainoffset[1]+1500))
-	maintext.append(writeword("SineRave", fontsize, font, mainoffset[0],mainoffset[1]+1000))
-	maintext.append(writeword("Palonopsia", fontsize, font, mainoffset[0],mainoffset[1]+500))
-	maintext.append(writeword("MountainDrone", fontsize, font, mainoffset[0],mainoffset[1]))
+	maintext.append(writeword("ElfenWander", fontsize, font, mainoffset[0],mainoffset[1]+3100, "right"))
+	maintext.append(writeword("DistressFrequency", fontsize, font, mainoffset[0],mainoffset[1]+2600, "right"))
+	maintext.append(writeword("TheEdgeOfWhatIs", fontsize, font, mainoffset[0],mainoffset[1]+2100, "right"))
+	maintext.append(writeword("Administratively", fontsize, font, mainoffset[0],mainoffset[1]+1800, "right"))
+	maintext.append(writeword("Possible", fontsize, font, mainoffset[0],mainoffset[1]+1500, "right"))
+	maintext.append(writeword("SineRave", fontsize, font, mainoffset[0],mainoffset[1]+1000, "right"))
+	maintext.append(writeword("Palonopsia", fontsize, font, mainoffset[0],mainoffset[1]+500, "right"))
+	maintext.append(writeword("MountainDrone", fontsize, font, mainoffset[0],mainoffset[1], "right"))
 
-	maintext.append(writeword("KAOTEC__Modular_Mountains", 10, "subatomic.ttf", 7200,10500))
+	maintext.append(writeword("Modular_Mountains", 10, "subatomic.ttf", 17500,10000, "right"))
+	maintext.append(writeword("KAOTEC", 10, "subatomic.ttf", 17500,9200, "right"))
 
 	transforms.scale(maintext, 0.8)
 	transforms.offset(maintext, (-5000,0))
 	# preview.append(maintext)
 	plotter.write(maintext)
+
+
+# def debuglayer():
+# 	plotter.select_pen(2)
+# 	t = shapes.label("Spacing Parameters" + str(end), 0.15, 0.15)
+# 	transforms.offset(t,(200,0))
+# 	transforms.offset(t,globaloffset)
+# 	t = shapes.label("" + str(end), 0.15, 0.15)
+# 	transforms.offset(t,(200,0))
+# 	transforms.offset(t,globaloffset)
+
+# 	plotter.write(t)
+
+
+
 # print(generatemodulation(40,10))
+
+
+
+
 
 # for x in xrange(1,2):
 # 	for y in xrange(1,2):
@@ -398,8 +423,8 @@ def maintext():
 #         plotSquare(1000, x*1800, -y*1800, x*10, y*100)
 
 def generateBackground():
-	inputdata = generatemodulation(50,10, random.randint(1,100), 80)
-	modulationdata = generatemodulation(30, 10, random.randint(1,100),900)
+	inputdata = generatemodulation(40,10, random.randint(1,100), 80)
+	modulationdata = generatemodulation(30, 10, random.randint(1,100),1200)
 	r = renderline(inputdata, modulationdata, -1000, 6000)
 	preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 	# plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
@@ -419,6 +444,21 @@ def generateBackground():
 
 # preview.append(sign("album001cover test", pltmax[0]+100, 100 ))
 
+def debuggrid(interval):
+	grid = shapes.group([])
+	i = 0
+	x = 0
+	y = 0
+	while (x < pltmax[0]):
+		i = i + 1
+		x = i*interval
+		grid.append(shapes.line((x,0),(x,pltmax[1])))
+	i = 0
+	while (y < pltmax[1]):
+		i = i + 1
+		y = i*interval
+		grid.append(shapes.line((0,y),(pltmax[0],y)))	
+	plotter.write(grid)	
 
 
 spacingA = 10000
@@ -427,24 +467,25 @@ spacingC = 1500
 print('startnumber/stopnumber will be plotted')
 startnumber = input('enter startnumber: ')
 stopnumber = input('enter stopnumber (eg. 300): ')
-for x in xrange(startnumber,stopnumber):
-	random.seed(startnumber + x)
+for x in xrange(startnumber,stopnumber+1):
+	# random.seed(startnumber + x)
 	preview = shapes.group([])
 	generateBackground()
 	io.view(preview)
 	print("spacingA = " + str(spacingA))
 	print("spacingB = " + str(spacingB))
 	print("spacingC = " + str(spacingC))
-	ready = input('drawing ok? press 1 to continue, press 2 for rerun:, press 3 for new parameters')
+	ready = input('drawing ok? press 1 to continue, press 2 for rerun:, press 3 for new parameters: ')
 	print(ready)
 	if(ready == 1):
 		plotter.write(preview)
 		bytext(startnumber, stopnumber)
 		maintext()
-		plotter.write(sign("album001cover test", pltmax[0]+100, 100 ))
+		plotter.write(sign("modular mountains", pltmax[0]+100, 100 ))
+		# debuggrid(1000)
+		io.view(plotter)
 		io.export(plotter, filename, fmt='jpg')
 		io.export(plotter, filename, fmt='svg')
-		io.view(plotter)
 		startnumber = startnumber + 1
 		plotter.clear()
 	if(ready == 2):
@@ -457,6 +498,7 @@ for x in xrange(startnumber,stopnumber):
 
 	else:
 		print('press CTRL-C')
+print("all done!")
 
 
 

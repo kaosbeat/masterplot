@@ -78,14 +78,16 @@ def writewordold(textstring, size, font, xpos, ypos):
 
 
   # print VERTS
-def writeword(textstring, size, font, xpos, ypos):
+def writeword(textstring, size, font, xpos, ypos, align):
     word = shapes.group([])
     print (textstring)
     tt = xpos
     for char in textstring:
         c = plotchar(char, size, font, tt, ypos)
-        tt = tt + c[1] + size*25
+        tt = tt + c[1] + size*12
         word.append(c[0])
+    if (align == "right"):
+        transforms.offset(word, ((xpos - tt), 0))
     return(word)
 
 
