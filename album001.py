@@ -58,9 +58,9 @@ transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2))
 plotOutline = True
 
 if (plotOutline):
-	preview.append(bounds)
-
-plotter.write(bounds)
+	# preview.append(bounds)
+	plotter.select_pen(1)
+	plotter.write(bounds)
 
 # plotter.select_pen(2)
 # g = shapes.group([])
@@ -154,139 +154,6 @@ def generatemodulation(len,range, base, scale):
 
 
 
-
-
-
-
-# def renderline(indata, moddata, miny, maxy):
-# 	# print(len(data))
-# 	# minindata = min(indata)
-# 	# maxindata = max(indata)
-# 	# remappedindata = list(map(lambda x: remap(x, minindata, maxindata, miny, maxy), indata))
-# 	# print(remappedindata)
-# 	# minmoddata = min(moddata)
-# 	# maxmoddata = max(moddata)
-# 	# remappedmoddata = list(map(lambda x: remap(x, minmoddata, maxmoddata, miny, maxy), moddata))
-# 	g1 = shapes.group([])
-# 	g2 = shapes.group([])
-# 	c = 1.8 #curvature
-# 	p = -4 #perspective stretch
-# 	compression = 4000
-# 	# //do perspective correction
-# 	# modulationdata = remappedmoddata
-# 	# inputdata = remappedindata
-# 	ax1 = []
-# 	ax2 = []
-# 	bx1 = []
-# 	bx2 = []
-# 	ay1 = []
-# 	ay2 = []
-# 	by1 = []
-# 	by2 = []
-# 	for y in xrange(1,len(modulationdata)-1):
-# 		# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
-# 		for x in xrange(1,len(inputdata)-1):
-
-# 			x1 = -x * compression / y
-# 			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
-# 			x2 = -(x+1)*compression/(y)
-# 			y2 = (compression/10-c*y)*y+(y*compression/10+inputdata[x+1]*compression/100 * modulationdata[y])
-# 			# print(x1,y1,x2,y2)
-# 			ax1.append(x1)
-# 			ax2.append(x2)
-# 			ay1.append(y1)
-# 			ay2.append(y2)
-# 			# y2 = 5000
-# 			# if ( x1 < -pltmax[0]):
-# 			# 	if (x2 < -pltmax[0]):
-# 			# 		pass
-# 			# 	else:
-# 			# 		g.append(shapes.line((x1,y1),(pltmax[0],y2)))
-# 			# else:
-# 			# 	g.append(shapes.line((x1,y1),(x2,y2)))
-# 	minay1 = min(ay1)
-# 	maxay1 = max(ay1)
-# 	ay1new = list(map(lambda x: remap(x, minay1, maxay1, miny,maxy), ay1))
-# 	minay2 = min(ay2)
-# 	maxay2 = max(ay2)
-# 	ay2new = list(map(lambda x: remap(x, minay2, maxay2, miny,maxy), ay2))
-
-# 	pathpoints = []
-# 	for i in xrange(len(ax1)):
-# 		if ( ax1[i] > -pltmax[0]):
-# 			pathpoints.append((ax1[i],ay1new[i]))
-
-# 		# 	if (ax2[i] < -pltmax[0]):
-# 		# 		pass
-# 		# 	else:
-# 		# 		pass
-# 		# 		# g.append(shapes.line((x1,y1),(x2,y2)))
-# 		else:
-# 			g1.append(shapes.path(pathpoints))
-# 			pathpoints = []
-# 		# 	g.append(shapes.line((ax1[i],ay1new[i]),(ax2[i],ay2new[i])))
-# 	g1.append(shapes.catmull_path(pathpoints))
-
-
-# 			# g.append(shapes.line((x1,y1),(x2,y2)))
-# 	# ///we split the loops for effcient polylines construction
-
-# 	# for x in xrange(1,len(inputdata)-1-(int(len(inputdata)/2))+y):
-# 	for x in xrange(1,len(inputdata)):
-# 		for y in xrange(1,len(modulationdata)-2):
-# 			x1 = -x * compression / y
-# 			y1 = (compression/10-c*y)*y+(y*compression/10+(inputdata[x]*compression/100 * modulationdata[y]))
-# 			x2 = -x * compression / (y+1)
-# 			y2 = (compression/10-c*(y+1))* (y+1)+((y+1)*compression/10+(inputdata[x]*compression/100 * modulationdata[y+1]))
-# 			# y2 = 0
-# 			bx1.append(x1)
-# 			bx2.append(x2)
-# 			by1.append(y1)
-# 			by2.append(y2)
-# 			# if ( x1 < -pltmax[0]):
-# 			# 	if (x2 < -pltmax[0]):
-# 			# 		pass
-# 			# 	else:
-# 			# 		pass
-# 			# 		# g.append(shapes.line((x1,y1),(x2,y2)))
-# 			# else:
-# 			# 	g.append(shapes.line((x1,y1),(x2,y2)))
-# 	minby1 = min(by1)
-# 	maxby1 = max(by1)
-# 	by1new = list(map(lambda x: remap(x, minby1, maxby1, miny,maxy), by1))
-# 	minby2 = min(by2)
-# 	maxby2 = max(by2)
-# 	by2new = list(map(lambda x: remap(x, minby2, maxby2, miny,maxy), by2))
-
-# 	pathpoints = []
-# 	# for i in xrange(len(bx1)):
-# 	# 	if ( bx1[i] < -pltmax[0]):
-# 	# 		if (bx2[i] < -pltmax[0]):
-# 	# 			pass
-# 	# 		else:
-# 	# 			pass
-# 	# 			# g.append(shapes.line((x1,y1),(x2,y2)))
-# 	# 	else:
-# 	# 		# g.append(shapes.line((bx1[i],by1new[i]),(bx2[i],by2new[i])))
-# 	# 		pathpoints.append((bx1[i],by1new[i]))
-# 	for i in xrange(len(bx1)-1):
-# 		if ( bx1[i+1] > -pltmax[0]):
-# 			if (bx1[i+1] > bx1[i]):
-# 				pathpoints.append((bx1[i],by1new[i]))
-# 			else:
-# 				print(pathpoints)
-# 				g2.append(shapes.path(pathpoints))
-# 				pathpoints = []
-
-# 			# g.append(shapes)
-# 	# transforms.scale(g/ 4.5)
-# 	# transforms.rotate(g,90)
-# 	transforms.offset(g1, (pltmax[0],0))
-# 	transforms.offset(g2, (pltmax[0],0))
-# 	# print(g.width)
-# 	plotter.write(g1)
-# 	plotter.write(g2)
-
 def renderline(indata, moddata, miny, maxy):
 	# pointsH = []
 	g = shapes.group([])
@@ -345,23 +212,22 @@ def renderline(indata, moddata, miny, maxy):
 
 #### text
 def bytext(start, end):
-	plotter.select_pen(2)
 	t = shapes.label(str(start) + "/" + str(end), 0.15, 0.15)
 	transforms.offset(t,(200,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	t = shapes.label("recorded in AQTushetii Georgia", 0.15, 0.15)
-	transforms.offset(t,(1200,50))
+	transforms.offset(t,(1000,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	# preview.append(t)
 	t = shapes.label("kaotec []<> 2019", 0.15, 0.15)
-	transforms.offset(t,(4200,50))
+	transforms.offset(t,(7400,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 
 	t = shapes.label("now is the right moment to say wow", 0.15, 0.15)
-	transforms.offset(t,(5800,50))
+	transforms.offset(t,(4000,50))
 	transforms.offset(t,globaloffset)
 	plotter.write(t)
 	# preview.append(t)
@@ -369,7 +235,7 @@ def bytext(start, end):
 	# transforms.offset(t,(5200,0))
 	# transforms.offset(t,globaloffset)
 	# preview.append(t)
-	plotter.write(t)
+	# plotter.write(t)
 
 
 def maintext():
@@ -426,7 +292,7 @@ def generateBackground():
 	inputdata = generatemodulation(40,10, random.randint(1,100), 80)
 	modulationdata = generatemodulation(30, 10, random.randint(1,100),1200)
 	r = renderline(inputdata, modulationdata, -1000, 6000)
-	preview.append(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
+	preview.append(plotgroup(r, 1, [(0,0),pltmax], (0,0), 1))
 	# plotter.write(plotgroup(plotter, r, 1, [(0,0),pltmax], (0,0), 1))
 
 # xlen = 10
@@ -478,9 +344,12 @@ for x in xrange(startnumber,stopnumber+1):
 	ready = input('drawing ok? press 1 to continue, press 2 for rerun:, press 3 for new parameters: ')
 	print(ready)
 	if(ready == 1):
+		plotter.select_pen(1)
 		plotter.write(preview)
-		bytext(startnumber, stopnumber)
+		plotter.select_pen(2)
 		maintext()
+		plotter.select_pen(3)
+		bytext(startnumber, stopnumber)
 		plotter.write(sign("modular mountains", pltmax[0]+100, 100 ))
 		# debuggrid(1000)
 		io.view(plotter)

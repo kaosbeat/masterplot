@@ -18,8 +18,12 @@ if (virtualplotting == 'real'):
 		plotter = instantiate_plotters( )[0]
 		print("plotting for real")
 
-
+envelopesizemm = [320,260]
+paper = shapes.rectangle(envelopesizemm[0]/plotunit, envelopesizemm[1]/plotunit)
+transforms.offset(paper,(envelopesizemm[0]/plotunit/2,envelopesizemm[1]/plotunit/2))
+plotter.write(paper)
 pltmax = [16158, 11040]
+pltmax = [320/plotunit,260/plotunit]
 bounds =shapes.rectangle(pltmax[0],pltmax[1])
 transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2) )
 #plotter.write(bounds)
@@ -126,9 +130,9 @@ def calculatesvggroup(svg):
 	#scale to fullsize
 	print(g)
 	if len(h) > 0:
-		sc = min( [15000/g.width, 15000/h.width, 10000/g.height, 10000/h.height])
+		sc = min( [12000/g.width, 15000/h.width, 9500/g.height, 9500/h.height])
 	else:
-		sc = min([15000/g.width, 10000/g.height])
+		sc = min([12000/g.width, 9500/g.height])
 	print (sc)
 	transforms.scale(g, sc)
 	transforms.scale(h, sc)
@@ -153,6 +157,6 @@ def grabSVGandplotWithChiplotle(file):
 
 print (sys.argv[1])
 grabSVGandplotWithChiplotle(sys.argv[1])
-plotter.write(sign(sys.argv[1]))
+# plotter.write(sign(sys.argv[1], 0, 0))
 io.view(plotter)
 # io.view(plotter)

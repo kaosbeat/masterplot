@@ -3,9 +3,9 @@ import bpy
 #from svgpathtools import svg2paths, Path, Line, Arc, CubicBezier, QuadraticBezier
 import random
 import sys
-# import argparse
-import tracery
-from tracery.modifiers import base_english
+import argparse
+#import tracery
+#from tracery.modifiers import base_english
 
 layers = [False]*20
 layers[0] = True
@@ -43,25 +43,6 @@ def multicubegeom(cubenum, union):
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.view3d.camera_to_view_selected()
 
-
-def geomcomposition():
-    rad = random.random()*0.2+0.3
-    loc = [random.random()*3, random.random()*3, random.random()*3]
-    rot = [random.random()*90,random.random()*90,random.random()*90]
-    add_cube = bpy.ops.mesh.primitive_cube_add
-    add_cube(location=loc,rotation=rot, radius=rad)
-    for vert in bpy.data.objects["Cube"].data.vertices:
-        vert.co.x += random.random()*0.2+0.3
-        vert.co.y += random.random()*0.8+0.3
-    sizex = random.random(1,2)
-    sizey = random.random(3,5)
-    sizez = random.random(1,4)
-    bpy.data.objects["Cube"].dimensions = (sizex, sizey, sizez)
-    # bpy.data.objects["Cube"].data.vertices[0].co.x += 1.0
-
-
-
-geomcomposition()
 
 def bezierStack():
     add_curve = bpy.ops.curve.primitive_bezier_curve_add
@@ -109,43 +90,26 @@ def addtextstuff(text, scale):
 
 
 def setFreestyleContext():
-    bpy.context.scene.render.layers["fressstylelayer"].use_solid = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_halo = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_zmask = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_all_z = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_ztransp = False
-    bpy.context.scene.render.layers["fressstylelayer"].invert_zmask = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_sky = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_edge_enhance = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_strand = False
-    bpy.context.scene.render.layers["fressstylelayer"].use_freestyle = True
+
     bpy.context.scene.render.use_freestyle = True
     #change to script mode
-    rl = bpy.context.scene.render.layers.active
-    rl.freestyle_settings.mode = 'EDITOR'
+    #rl = bpy.context.scene.render.layers.active
+    #rl.freestyle_settings.mode = 'EDITOR'
 
-def setRenderSize(size):
+def setRenderSize():
     bpy.context.scene.render.resolution_y = 2970 
     bpy.context.scene.render.resolution_x = 4200
-    bpy.context.scene.render.resolution_percentage = 10
+    bpy.context.scene.render.resolution_percentage = 50
 
-def renderToSVG():
-    context = bpy.context
-    for area in context.screen.areas:
-        if area.type == 'VIEW_3D':
-            print(area)
-            ctx = {
-                "window": context.window, # current window, could also copy context
-                "area": area, # our 3D View (the first found only actually)
-                "region": None # just to suppress PyContext warning, doesn't seem to have any effect
-            }
-    bpy.ops.export.svg(ctx)
+def renderToSVG(filename):
+    bpy.data.window_managers["WinMan"].ruta = "/Users/kaos/Documents/005_plotter/blenderplotter/algo3.svg"
+    bpy.ops.export.svg()
 
 def fitCam():
     bpy.ops.object.select_all(action='SELECT')
     bpy.ops.view3d.camera_to_view_selected()
     
-def render():
+def renderStuff():
     #render image
     bpy.ops.render.render( write_still=True )
 
@@ -156,15 +120,15 @@ rules = {
     'location': ['world', 'solar system', 'galaxy', 'universe']
 }
 
-grammar = tracery.Grammar(rules)
-grammar.add_modifiers(base_english)
+#grammar = tracery.Grammar(rules)
+#grammar.add_modifiers(base_english)
 
-def dostufff():
+#def dostufff():
   #  print(grammar.flatten("#origin#"))  # prints, e.g., "Hello, world!"
-    return(grammar.flatten("#origin#"))
+#    return(grammar.flatten("#origin#"))
 
 
-# dosomegeom()
+#dosomegeom()
 #multicubegeom(sys.argv[sysargvoffset+2], sys.argv[sysargvoffset+3])
 
 #bezierStack()
@@ -179,34 +143,23 @@ def dostufff():
 #print("doing: " + sys.argv[sysargvoffset+3])
 
 
-for idx,a in enumerate(sys.argv):
-    if a == '-f':
-        print('setting filepath' )
-        print('//../output/' + sys.argv[idx+1])
-        bpy.context.scene.render.filepath = '//../output/' + sys.argv[idx+1]
+#for idx,a in enumerate(sys.argv):
+#    if a == '-f':
+#        print('setting filepath')
+#        bpy.context.scene.render.filepath = './' + sys.argv[idx+1]
 
-### call it a second time to make sure filepath is set first before generating
-for idx,a in enumerate(sys.argv):
-    if a == '-g' or a == '--geom':
-        print("hell yeah")
-        print(sys.argv[idx+1])
-        eval(sys.argv[idx+1])
+#    if a == '-g' or a == '--geom':
+#        print("hell yeah")
+#        print(sys.argv[idx+1])
+#        eval(sys.argv[idx+1])
 
-
-### call it a third time to make sure geometry is rendered first, set all renderoptions before actually calling render
-for idx,a in enumerate(sys.argv):
-    if a == '-r' or a == '--render':
-        if sys.argv[idx+1].split('=')[0] == 'size':
-            print('setting rendersize to ',  sys.argv[idx+1].split('=')[1])
-            setRenderSize(sys.argv[idx+1].split('=')[1])
-        else:
-            setRenderSize(50)
-
-### call it a fourth time actually call render
-for idx,a in enumerate(sys.argv):
-    if a == '-r' or a == '--render':
-        if sys.argv[idx+1] == 'svg':
-            setFreestyleContext()
-            fitCam()
-            render()
-
+#    if a == '-r' or a == '--render':
+#
+#        print("rendering")
+#        setFreestyleContext()
+#        setRenderSize()
+#        renderStuff()
+dosomegeom()
+setFreestyleContext()
+setRenderSize()
+renderStuff()

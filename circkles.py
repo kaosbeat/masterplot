@@ -187,7 +187,7 @@ def brokenrotatedcircle (x,y, num, decay, segs, size):
     s = 2*math.pi/segs
     for i in xrange(num):
         c = shapes.group([])
-        d = random.randint(1,int(segs/20))
+        d = random.randint(1,int(segs/20)+2)
         e = 0
         while e < segs:
             g = random.randint(0,segs/d)
@@ -203,8 +203,8 @@ def brokenrotatedcircle (x,y, num, decay, segs, size):
 plotter.select_pen(2)
 size = 2000
 circlesize = 800
-brokencircle(1.1*size+850,1.1*size+480, 20 ,0.993, 30, size)
-brokencircle(1.7*size+1850,1.1*size+480, 10 ,0.993, 13, 1500)
+# brokencircle(1.1*size+850,1.1*size+480, 20 ,0.993, 30, size)
+# brokencircle(1.7*size+1850,1.1*size+480, 10 ,0.993, 13, 1500)
 
 #brokenrotatedcircle(size/2,size/2, 40 , 0.92, 8, size)
 
@@ -215,7 +215,7 @@ y=0
 size = 2500
 for x in xrange(3):
     for y in xrange(2):
-        #brokenrotatedcircle(2.1*size*x+size+150,2.1*size*y+size+150, 20 + 20*y , 0.9 + x/111 +y/111, 8 + x + 2*y, size)
+        brokenrotatedcircle(2.1*size*x+size+150,2.1*size*y+size+150, 20 + 20*y , 0.9 + x/111 +y/111, 8 + x + 2*y, size)
         pass
 
 
@@ -227,8 +227,8 @@ for x in xrange(3):
 
 export(plotter, sys.argv[1], fmt='jpg')
 # plotter.write(sign('circkles.py'))
-plotter.write(writeword("happy_40th_!_Bday_Corneel", 8, "rale.ttf", 100, 400))
-export(plotter, sys.argv[1], fmt='svg')
+# plotter.write(writeword("happy_40th_!_Bday_Corneel", 8, "rale.ttf", 100, 400))
+# export(plotter, sys.argv[1], fmt='svg')
 io.view(plotter)
 
 
