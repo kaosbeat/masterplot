@@ -9,7 +9,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth) 
 tweet = sys.argv[1] # some text
 image_path = sys.argv[2] # png
-  
+print(image_path)
 # to attach the media file 
 #status = 
 api.update_with_media(image_path, tweet)  
