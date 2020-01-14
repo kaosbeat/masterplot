@@ -112,6 +112,39 @@ def star(num_arms, arms_length):
     bpy.ops.view3d.camera_to_view_selected()
 
 
+def gridTower():
+    grid = D.collections.new('grid')
+    C.scene.collection.children.link(grid)
+    cubesize=2
+    x = 0.0
+    y = 0.0
+    z = 0.0
+    for i in range(0,3,1):
+        for j in range(0,3,1):
+            cubesize=2
+            Zz = 0.0
+            tower = bpy.data.objects.new( 'tower' + str(i), None )
+            grid.objects.link(tower)
+            for f in range(0,3,1):
+                rot = [0,0, 0]
+                x = i*cubesize + random.random()*cubesize-cubesize/2
+                y = j*cubesize 
+                randz = random.random()
+                if (randz > 0.1):
+                    z = z + random.random()*cubesize
+                else:
+                    z = z - random.random()*cubesize
+                loc = (x, y, z)
+                bpy.ops.mesh.primitive_cube_add(size=cubesize, enter_editmode=False, location=loc, rotation=rot)
+                grid.objects.link(C.object) #link it with collection
+                floor = C.object
+                floor.parent = tower
+                C.scene.collection.objects.unlink(C.object)
+                cubesize=cubesize*0.8
+    for ob in C.selected_objects:
+        ob.select_set(False)
+     
+
 
 
 
@@ -182,7 +215,7 @@ def fitCam():
     
 def renderStuff():
     #render image
-    #C.scene.svg_export.use_svg_export = True
+    C.scene.svg_export.use_svg_export = True
     bpy.ops.render.render( write_still=True )
     
 
@@ -219,7 +252,7 @@ rules = {
 for idx,a in enumerate(sys.argv):
    if a == '-f':
        print('setting filepath')
-       bpy.context.scene.render.filepath = '../output/' + sys.argv[idx+1]
+       bpy.context.scene.render.filepath = './' + sys.argv[idx+1]
 
    if a == '-g' or a == '--geom':
        print("hell yeah")
@@ -235,7 +268,7 @@ for idx,a in enumerate(sys.argv):
        renderStuff()
 # #dosomegeom()
 
-        
+#gridTower()    
 # star(12,3)
 
 # fitCam()

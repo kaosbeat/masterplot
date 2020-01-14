@@ -7,7 +7,7 @@
 # address = ["KAOTEC []<>", "Modular Mountains", "kaotec.bandcamp.com"]
 # address   = ["Johannes Taelman", "Axoloti HQ", "Ghent", "Belgium"]
 # address   = ["Tom", "Van de Wiele"] 
-address   = ["Van uw BFF"] 
+address   = ["Special Suntapes Promo Copy"] 
 ##plot adress and artwork on envelopes
 from chiplotle import *
 from chiplotle.tools.io import export
@@ -123,7 +123,7 @@ plotter.select_pen(1)
 plotter.write(writeaddress(address, addresszone))
 p = decorate()
 transforms.offset(p, (500,500))
-plotter.write(p)
+# plotter.write(p)
 
 
 
@@ -141,16 +141,16 @@ plotter.write(p)
 
 plotter.select_pen(2)
 text = shapes.group([])
-text.append(writeword("Happy", 20, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 270/plotunit,170/plotunit))
+text.append(writeword("Modular", 20, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 310/plotunit,220/plotunit))
 plotter.write(text)
 text = shapes.group([])
-text.append(writeword("Birthday", 20, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 270/plotunit,130/plotunit))
+text.append(writeword("Mountains", 20, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 310/plotunit,190/plotunit))
 plotter.write(text)
 text = shapes.group([])
-text.append(writeword("Ruben", 20, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 270/plotunit,90/plotunit))
+text.append(writeword("KAOTEC", 20, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 310/plotunit,140/plotunit))
 # transforms.rotate(text, math.radians(45))
 plotter.write(text)
 
