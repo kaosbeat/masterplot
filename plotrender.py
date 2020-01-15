@@ -104,20 +104,20 @@ def calculatesvggroup(svg):
 				p.append((segment.control.real,segment.control.imag))
 				p.append((segment.end.real,segment.end.imag))
 		print(sys.argv)
-		if (sys.argv[3] == 'hidden' or sys.argv[3] == 'both'):
-			if (layer == h):
-				if pathtype == "line":
-					layer.append(shapes.path(p))
-				if pathtype == "qbezier":
-					print("bezier it is", p)
-					layer.append(shapes.bezier_path(p,0.5))
-		if (sys.argv[3] == 'unhidden' or sys.argv[3] == 'both'):
-			if (layer == g):
-				if pathtype == "line":
-					layer.append(shapes.path(p))
-				if pathtype == "qbezier":
-					print("bezier it is", p)
-					layer.append(shapes.bezier_path(p,0.5))	
+#		if (sys.argv[3] == 'hidden' or sys.argv[3] == 'both'):
+		if (layer == h):
+			if pathtype == "line":
+				layer.append(shapes.path(p))
+			if pathtype == "qbezier":
+				print("bezier it is", p)
+				layer.append(shapes.bezier_path(p,0.5))
+#		if (sys.argv[3] == 'unhidden' or sys.argv[3] == 'both'):
+		if (layer == g):
+			if pathtype == "line":
+				layer.append(shapes.path(p))
+			if pathtype == "qbezier":
+				print("bezier it is", p)
+				layer.append(shapes.bezier_path(p,0.5))	
 	print(g,h)
 	bb = get_bounding_rectangle(g)
 	bb = get_minmax_coordinates(bb.points)
