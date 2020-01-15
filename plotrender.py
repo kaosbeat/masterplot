@@ -147,10 +147,16 @@ def grabSVGandplotWithChiplotle(file):
 	# shape = calculatesvggroup(getGroup(file.encode('utf-8'), 'fressstylelayer_LineSet'))
 	shape = calculatesvggroup(file.encode('utf-8'))
 	print (shape['group'][0])
-	for idx, gr in enumerate(shape['group']):
-		print("plotting group", idx, len(gr))
-		plotter.select_pen(idx+1)
-		plotter.write(gr)
+	if (sys.argv[3] == 'hidden' or sys.argv[3] == 'both'):
+		plotter.select_pen(2)
+		plotter.write(shape['group'][1])
+	if (sys.argv[3] == 'unhidden' or sys.argv[3] == 'both'):
+		plotter.select_pen(1)
+		plotter.write(shape['group'][0])
+	# for idx, gr in enumerate(shape['group']):
+	# 	print("plotting group", idx, len(gr))
+	# 	plotter.select_pen(idx+1)
+	# 	plotter.write(gr)
 	
 
 
