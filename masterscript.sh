@@ -147,7 +147,7 @@ if [[ $P == nf ]]; then
     exit 4
 fi
 
-echo "filename: $f, blenderopts: $b, inkscapeopts: $ink, chiplotleopts: $c, Blendfile: $B"
+echo "filename: $f, blenderopts: $b, inkscapeopts: $ink, chiplotleopts: $c, Blendfile: $B, Project: $P"
 
 
 pngname=$f.png
