@@ -225,7 +225,7 @@ def subdivpattern(xoffset,yoffset,width,height,generations,numtypes):
 
 def plotlogo(logozone):
     plotter.select_pen(1)
-    file = "kaotec2.svg"
+    file = "lib/kaotec2.svg"
     kaotec = calculatesvggroup(file.encode('utf-8'))
     logo = plotgroupnew(kaotec['group'],logozone,1)
     # print(kaotec)
@@ -234,7 +234,7 @@ def plotlogo(logozone):
     preview.append(logo)
     plotter.write(logo)
     plotter.select_pen(2)
-    file = "kaotec1.svg"
+    file = "lib/kaotec1.svg"
     kaotec = calculatesvggroup(file.encode('utf-8'))
     logo = plotgroupnew(kaotec['group'],logozone,1)
     transforms.offset(logo,logooffset )
