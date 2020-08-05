@@ -135,7 +135,7 @@ fi
 
 
 
-echo "filename: $f, blenderopts: $b, inkscpaeopts: $ink, chiplotleopts: $c"
+echo "filename: $f, blenderopts: $b, inkscapeopts: $ink, chiplotleopts: $c, Blendfile: $B"
 
 
 pngname=$f.png
@@ -144,10 +144,10 @@ echo $b
 if [ $blend == 1 ]; then
     echo "we're doing blender"
     if [ $B == nB ]; then
-        echo "no blenderfile supplied, please specify using -B / -blenderfile, use filename, not path, file should be in blenderplotter subdirectory"
+        echo "no blenderfile supplied, please specify using -B / -blenderfile, use filename, not path, file should be in same directory"
         exit
     fi
-    /Applications/Blender/blender.app/Contents/MacOS/blender ./blenderplotter/$B.blend --background --python ./blenderplotter/generateandrender.py -- $b -f $f
+    /Applications/Blender/blender.app/Contents/MacOS/blender $B.blend --background --python generateandrender.py -- $b -f $f
     svgfilename=$f
     svgfilename+=0000.svg
 else
