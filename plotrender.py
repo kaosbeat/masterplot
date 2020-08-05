@@ -40,13 +40,13 @@ def getGroup(svg, groupname):
 # from xml.dom.minidom import parse as p
 #parse your XML-document
 	doc = minidom.parse(svg)
-	print(doc.childNodes[0].childNodes[1].getAttribute("id"))
+	#print(doc.childNodes[0].childNodes[1].getAttribute("id"))
 	# print doc.getElementById('#fressstylelayer_LineSet')  #>> None
-	print(doc.childNodes[0].childNodes[1].nodeValue)
+	#print(doc.childNodes[0].childNodes[1].nodeValue)
 	# print doc.childNodes[1].childNodes[1].getAttribute("id")
 	#Get all child nodes of your root-element or any element surrounding your "target" (in my example "cmmn:casePlanModel")
 	nodelist = doc.getElementsByTagName("g")[0].childNodes
-	print(nodelist)
+	#print(nodelist)
 	# i=0
 	# for i in range(len(nodelist)):
 	# 	if nodelist[i].getAttribute("id") == groupname:

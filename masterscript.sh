@@ -28,6 +28,10 @@
 # "-p" plot options
     ## virtual or real
 
+# "-P" projectname
+    ## required, name of directory where project specific files live, such as blender file, and blendpython function fiel and chiplotle files etc
+
+
 ####https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 # saner programming env: these switches turn some bugs into errors
 set -o errexit -o pipefail -o noclobber -o nounset
@@ -38,8 +42,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=f:b:B:i::c:g::t::s:p:
-LONGOPTS=file:,blender:,blenderfile:,inkscape::,chiplotle:,git::,twitter::,script:,plot:
+OPTIONS=f:b:B:i::c:g::t::s:p:P:
+LONGOPTS=file:,blender:,blenderfile:,inkscape::,chiplotle:,git::,twitter::,script:,plot:,project:
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
@@ -51,7 +55,7 @@ fi
 eval set -- "$PARSED"
 
 echo "$PARSED"
-f=nf B=nB b=nb c=nc ink=ni g=ng t=nt chip=0 s=ns githash='' script=0 blend=0 p=np
+f=nf B=nB b=nb c=nc ink=ni g=ng t=nt chip=0 s=ns githash='' script=0 blend=0 p=np P=nP
 # now enjoy the options in order and nicely split until we see --
 
 while true; do
@@ -115,6 +119,11 @@ while true; do
             p="$2"
             shift 2
             ;;
+        -P|--project)
+            echo "encounterd Project $2"
+            P="$2"
+            shift 2
+            ;;
         --)
             shift
             break
@@ -133,7 +142,10 @@ if [[ $f == nf ]]; then
     exit 4
 fi
 
-
+if [[ $P == nf ]]; then
+    echo "project name == subdirectory of projects is required"
+    exit 4
+fi
 
 echo "filename: $f, blenderopts: $b, inkscapeopts: $ink, chiplotleopts: $c, Blendfile: $B"
 
@@ -147,7 +159,7 @@ if [ $blend == 1 ]; then
         echo "no blenderfile supplied, please specify using -B / -blenderfile, use filename, not path, file should be in same directory"
         exit
     fi
-    /Applications/Blender/blender.app/Contents/MacOS/blender $B.blend --background --python generateandrender.py -- $b -f $f
+    /Applications/Blender/blender.app/Contents/MacOS/blender projects/$P/$B.blend --background --python projects/$P/generateandrender.py -- $b -f $f -P $P
     svgfilename=$f
     svgfilename+=0000.svg
 else
@@ -167,7 +179,7 @@ fi
 
 #### calling chiplotle with the svgplotter arguments are in order!! real/virtual hidden/unhidden/both so pass as -c"real both" or --chiplotle"real unhidden"
 if [ $chip == 1 ]; then
-    python plotrender.py $PWD/output/$svgfilename $c
+    python plotrender.py $PWD/projects/$P/output/$svgfilename $c
 fi
  
 
@@ -184,7 +196,7 @@ fi
 
 ##call git
 if [ $g == dogit ]; then
-    git add $PWD/output/$svgfilename
+    git add $PWD/projects/$P/output/$svgfilename
     git commit -a -m "plotting $g"
     githash=`git rev-parse HEAD`
 fi
@@ -192,5 +204,6 @@ fi
 
 ##post to twitter?
 if [ $t != nt ]; then
-    python tweetplot.py "$tweet $githash" $tweetimg
+    echo "$tweetimg"
+    python lib/tweetplot.py "$tweet $githash" $PWD/projects/$P/output/$svgfilename
 fi
