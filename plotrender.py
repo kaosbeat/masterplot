@@ -161,9 +161,12 @@ def grabSVGandplotWithChiplotle(file):
 
 
 
-print (sys.argv[1])
+
 grabSVGandplotWithChiplotle(sys.argv[1])
-plotter.write(sign(sys.argv[1], 325/plotunit, 0))
-# io.export(plotter, , fmt='jpg' #> path needs to be fixed
+
+print (sys.argv[1].rsplit('/')[-1])
+
+plotter.write(sign(sys.argv[1].rsplit('/')[-1], 325/plotunit, 0))
+io.export(plotter, "out2" , fmt='jpg') #> path needs to be fixed
 io.view(plotter)
 # io.view(plotter)
