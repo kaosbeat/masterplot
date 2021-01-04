@@ -1,17 +1,26 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # encoding: utf-8
-# address = ["Gianni Degryse", "Rozenhoed 30", "9921 Vinderhoute"]
-# address = ["Nana Takvarelia", "27 Betlemi street", "0105 Tbilisi", "Georgia"]
-# address = ["Kasper Jordaens", "Londenstraat 40", "9000 Gent", u"Belgie"]
-# address = ["KAOTEC []<>", "Modular Mountains", "kaotec.bandcamp.com"]
-# address   = ["Johannes Taelman", "Axoloti HQ", "Ghent", "Belgium"]
-# address   = ["Tom", "Van de Wiele"] 
-address   = ["Today is the oldest you have been, and the youngest you will ever be. Make the most of it!"]
-address   = ["Just remember," ,"once you're over the hill,", "you begin to pick up speed."] #Charles Schulz
-#"You don't get older, you get better." #Shirley Bassey
-#“You are only young once, but you can be immature for a lifetime. Happy birthday!”
-address = ["Forget about the past, you can't change it.", "Forget about the future, you can't predict it.","Forget about the present, and just drink it"]
+
+
+# address = [
+# 		"towards the decapod of estrange              ",
+# 		"we happen pertinent two despairing           ", 
+# 		"phoenix bathing upstage a marine bucket      ",
+# 		"           balance the dextrous inquiry      ",
+# 		"           supporter of sweeping             ",
+# 		"we beg surplus air entry the stellar         ",
+# 		"we desire also clean absorption the astronaut",
+# 		"squirrel taste diner on a camel              ",
+# 		"the philanthropic of parking                 ",
+# 		"complete pigeonhole of choreographer         ",
+# 		"the virtuoso reply if you suppose            ",
+# 		"ambitious of doing voting someday            ",
+# 		"I manufacture music                          "
+# 		]
+
+address = ["naam familienaam", "crazy place in town", "land met regering"]
+
 
 
 ##plot adress and artwork on envelopes
@@ -25,14 +34,14 @@ import sys
 import math
 from noise import pnoise1, pnoise2, pnoise3
 plotPlotterOutline = False
-plotPaperOutline = False
+plotPaperOutline = True
 plotDrawingOutline = False
 
 # pltmax = [10320, 7920] >>> ???
 pltmax = [16158, 11040]
 plotunit = 0.025 # 1 coordinate unit per plotter = 0.025 mm
-envelopesizemm = [230,100]
-addresszone = [(10/plotunit, 80/plotunit), (230/plotunit, 100/plotunit)]
+envelopesizemm = [200,200]
+addresszone = [(10/plotunit, 180/plotunit), (200/plotunit, 10/plotunit)]
 logozone = [(280/plotunit, 10/plotunit), (320/plotunit, 30/plotunit)]   ## verhouding X/y = 1/2
 backgroundzone = [[5/plotunit, 0/plotunit],[80/plotunit, 40/plotunit]] 
 filename = sys.argv[1]
@@ -219,7 +228,7 @@ plotter.select_pen(1)
 plotter.write(writeaddress(address, addresszone))
 p = decorate()
 transforms.offset(p, (500,500))
-plotter.write(p)
+# plotter.write(p)
 globaloffset = (0,0)
 
 b = generateBackground()
@@ -240,16 +249,16 @@ transforms.offset(b, (globaloffset[0], globaloffset[1]))
 
 plotter.select_pen(2)
 text = shapes.group([])
-text.append(writeword("Happy", 15, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 230/plotunit,70/plotunit))
+text.append(writeword("This_is_not", 15, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 190/plotunit,70/plotunit))
 plotter.write(text)
 text = shapes.group([])
-text.append(writeword("Birthday", 15, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 230/plotunit,40/plotunit))
+text.append(writeword("an_album", 15, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 190/plotunit,40/plotunit))
 plotter.write(text)
 text = shapes.group([])
-text.append(writeword("Julie", 15, "USSR.ttf",0,0, "right"))
-transforms.offset(text, ( 230/plotunit,10/plotunit))
+text.append(writeword("#1/12", 15, "USSR.ttf",0,0, "right"))
+transforms.offset(text, ( 190/plotunit,10/plotunit))
 # transforms.rotate(text, math.radians(45))
 plotter.write(text)
 
@@ -258,4 +267,11 @@ plotter.write(text)
 # plotter.write(bounds)
 # plotter.write(paper)
 # plotter.write(a)
+
+
+if (plotPaperOutline):
+    paper = shapes.rectangle(envelopesizemm[0]/plotunit, envelopesizemm[1]/plotunit)
+    transforms.offset(paper,(envelopesizemm[0]/plotunit/2,envelopesizemm[1]/plotunit/2))
+
+    plotter.write(paper)
 io.view(plotter)

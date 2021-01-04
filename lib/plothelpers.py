@@ -66,6 +66,7 @@ def plotgroupnew(g, zone, padding):
 		gscale = zh/g.height/padding 
 	else:
 		gscale = zw/g.width/padding
+	print ("scale = ", gscale)
 	transforms.scale(g, gscale)
 	transforms.offset(g, (zonecenter[0] - g.center[0] - zw/2, zonecenter[1] - g.center[1] - zh/2))
 

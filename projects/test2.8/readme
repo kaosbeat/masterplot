@@ -1,0 +1,9 @@
+# info
+- project dir conatins all files needed to run
+- blender 2.79
+
+# config 
+
+# run
+./masterscript.sh -B stroketesting -b "-g multicubegeom(20,'union') --render png -r svg -r size=10"  -ftesting -g"masterscript is upandrunning" -t"smooth testing" -c"virtual hidden" -P test
+

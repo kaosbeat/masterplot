@@ -21,6 +21,7 @@ if (virtualplotting == 'real'):
 envelopesizemm = [320,260]
 paper = shapes.rectangle(envelopesizemm[0]/plotunit, envelopesizemm[1]/plotunit)
 transforms.offset(paper,(envelopesizemm[0]/plotunit/2,envelopesizemm[1]/plotunit/2))
+plotter.select_pen(2)
 plotter.write(paper)
 pltmax = [16158, 11040]
 pltmax = [320/plotunit,260/plotunit]
