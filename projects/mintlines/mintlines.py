@@ -69,7 +69,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
         points = []
         g = shapes.group([])
         normx = (x-(size/2))/float(size/2)
-        xnoise = xnoise + size/10
+        xnoise = xnoise + size/5
         print(normx)
         for y in xrange(0,size):          
             yoff = math.cos(math.asin(normx))*size/2
@@ -101,7 +101,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
 
 plotter.select_pen(1)
 seed = setSeed()
-plot = drawMintLines(150,seed,400,400,500,30)
+plot = drawMintLines(150,seed,400,400,500,500)
 # plot = drawMintLines(200,seed,150,50,30,30)
 
 # "center and scale"
