@@ -67,7 +67,7 @@ def calculatesvggroup(svg):
 	g = shapes.group([])
 	h = shapes.group([])
 	paths, attributes, svg_attributes = svg2paths2(svg)
-	print paths
+	# print paths
 	#paths, attributes = svg2paths(svg)
 #	print dir(paths[0][0].start.real)
 	for idx, path in enumerate(paths):
@@ -104,37 +104,37 @@ def calculatesvggroup(svg):
 				# p.append(shapes.bezier_path([(segment.start.real,segment.start.imag),(segment.control1.real,segment.control1.imag),(segment.control2.real,segment.control2.imag),(segment.end.real,segment.end.imag)],0))
 				p.append((segment.control.real,segment.control.imag))
 				p.append((segment.end.real,segment.end.imag))
-		print(sys.argv)
+		# print(sys.argv)
 #		if (sys.argv[3] == 'hidden' or sys.argv[3] == 'both'):
 		if (layer == h):
 			if pathtype == "line":
 				layer.append(shapes.path(p))
 			if pathtype == "qbezier":
-				print("bezier it is", p)
+				# print("bezier it is", p)
 				layer.append(shapes.bezier_path(p,0.5))
 #		if (sys.argv[3] == 'unhidden' or sys.argv[3] == 'both'):
 		if (layer == g):
 			if pathtype == "line":
 				layer.append(shapes.path(p))
 			if pathtype == "qbezier":
-				print("bezier it is", p)
+				# print("bezier it is", p)
 				layer.append(shapes.bezier_path(p,0.5))	
-	print(g,h)
+	# print(g,h)
 	bb = get_bounding_rectangle(g)
 	bb = get_minmax_coordinates(bb.points)
-	print (bb)
+	# print (bb)
 	print (svg + " is " + str(g.width*plotunit) + "mm")
 	print (svg + " is " + str(g.height*plotunit) + "mm")
 	# plotter.write(g)
 	transforms.offset(g, (-bb[0][0], -bb[0][1] ))
 	transforms.offset(h, (-bb[0][0], -bb[0][1] ))
 	#scale to fullsize
-	print(g)
+	# print(g)
 	if len(h) > 0:
 		sc = min( [12000/g.width, 15000/h.width, 9500/g.height, 9500/h.height])
 	else:
 		sc = min([12000/g.width, 9500/g.height])
-	print (sc)
+	# print (sc)
 	transforms.scale(g, sc)
 	transforms.scale(h, sc)
 	transforms.offset(g, (500,500))
@@ -164,10 +164,8 @@ def grabSVGandplotWithChiplotle(file):
 
 
 grabSVGandplotWithChiplotle(sys.argv[1])
-
 print (sys.argv[1].rsplit('/')[-1])
-
 plotter.write(sign(sys.argv[1].rsplit('/')[-1], 325/plotunit, 0))
-io.export(plotter, "out2" , fmt='jpg') #> path needs to be fixed
+io.export(plotter, "output/out2" , fmt='jpg') #> path needs to be fixed
 io.view(plotter)
 # io.view(plotter)

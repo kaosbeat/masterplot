@@ -255,12 +255,15 @@ rules = {
 for idx,a in enumerate(sys.argv):
    if a == '-f':
        print('setting filepath')
-       bpy.context.scene.render.filepath = './output/' + sys.argv[idx+1]
+       bpy.context.scene.render.filepath = '../../output/' + sys.argv[idx+1]
+
 
    if a == '-g' or a == '--geom':
        print("hell yeah")
        print(sys.argv[idx+1])
        eval(sys.argv[idx+1])
+
+for idx,a in enumerate(sys.argv):
 
    if a == '-r' or a == '--render':
 

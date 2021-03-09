@@ -152,6 +152,8 @@ echo "filename: $f, blenderopts: $b, inkscapeopts: $ink, chiplotleopts: $c, Blen
 
 pngname=$f.png
 ###calling BLENDER
+
+#### ['/Applications/Blender.app/Contents/MacOS/Blender', '--log-file', 'logfile', 'projects/blenderplotter/plotrendertemplate.blend', '--background', '--python', 'projects/blenderplotter/generateandrender.py', '--', '-g', "multicubegeom(2,'union')", '--render', 'png', '-r', 'svg', '-r', 'size=10', '-f', 'testing_03_08_2021_1738', '-P', 'blenderplotter']
 echo $b
 if [ $blend == 1 ]; then
     echo "we're doing blender"
@@ -159,9 +161,11 @@ if [ $blend == 1 ]; then
         echo "no blenderfile supplied, please specify using -B / -blenderfile, use filename, not path, file should be in same directory"
         exit
     fi
-    /Applications/Blender/blender.app/Contents/MacOS/blender projects/$P/$B.blend --background --python projects/$P/generateandrender.py -- $b -f $f -P $P
+    /Applications/Blender.app/Contents/MacOS/Blender --log-file logfile projects/$P/$B.blend --background --python projects/$P/generateandrender.py -- $b -f $f -P $P
+    # svgfilename=$f.svg
     svgfilename=$f
-    svgfilename+=0000.svg
+    svgfilename+=0000.svg ### blender appends this.... need to keep it in sync
+    echo $svgfilename
 else
     echo "we're not doing blender"
     svgfilename=$f.svg
@@ -179,7 +183,11 @@ fi
 
 #### calling chiplotle with the svgplotter arguments are in order!! real/virtual hidden/unhidden/both so pass as -c"real both" or --chiplotle"real unhidden"
 if [ $chip == 1 ]; then
-    python plotrender.py $PWD/projects/$P/output/$svgfilename $c
+    # python plotrender.py $PWD/projects/$P/output/$svgfilename $c
+    echo "CALLING CHIPLOTLE"
+    echo $PWD/output/$svgfilename $c
+    python plotrender.py $PWD/output/$svgfilename $c
+
 fi
  
 
@@ -196,7 +204,7 @@ fi
 
 ##call git
 if [ $g == dogit ]; then
-    git add $PWD/projects/$P/output/$svgfilename
+    git add $PWD/output/$svgfilename
     git commit -a -m "plotting $g"
     githash=`git rev-parse HEAD`
 fi
@@ -205,5 +213,5 @@ fi
 ##post to twitter? >>>> if calling extra script, $tweetimg might have correct filename, else use SVG > check format in in tweetplot.py
 if [ $t != nt ]; then
     echo "$tweetimg"
-    python lib/tweetplot.py "$tweet $githash" $PWD/projects/$P/output/$svgfilename
+    python lib/tweetplot.py "$tweet $githash" $PWD/output/$svgfilename
 fi

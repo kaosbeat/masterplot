@@ -4,6 +4,9 @@ from tweetkeys import *
 from wand.image import Image
 
 
+
+print("invoking TWEEEEEETING")
+
 # ## get ourselves the image we need (convert svg to jpg)
 # with Image(filename=sys.argv[2]) as img:
 #     img.format = 'jpeg'
@@ -17,7 +20,7 @@ auth.set_access_token(access_token, access_token_secret)
    
 api = tweepy.API(auth) 
 tweet = sys.argv[1] # some text
-image_path = "out2.jpg" # jpg created above or in plotrender.py
+image_path = "output/out2.jpg" # jpg created above or in plotrender.py
 print(image_path)
 # to attach the media file 
 #status = 
