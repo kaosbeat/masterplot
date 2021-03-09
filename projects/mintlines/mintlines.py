@@ -71,8 +71,8 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
         if (x == 0 or x == size):
             normx = 0
         else:
-            normx = size/x
-        if (x == 0):
+            normx = x/size
+        if (x == 5):
             print(normx)
             print(math.asin(normx))
         for y in xrange(0,size):          
