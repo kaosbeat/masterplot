@@ -45,9 +45,10 @@ def setSeed(): ####needs to be written to tmp file in order to save at in git
 
 def drawMintLines(seed, interx, intery, xnoise, ynoise):
     random.seed(seed)
-    g = shapes.group([])
+    
     points = []
     for x in xrange(0,100):
+        g = shapes.group([])
         for y in xrange(0,100):          
             if (x < 10 or x > 90):
                 xnoise = 0
@@ -57,9 +58,8 @@ def drawMintLines(seed, interx, intery, xnoise, ynoise):
                 ynoise = 0
             xpos = x*interx + random.random() * xnoise
             ypos = y*intery + random.random() * ynoise
-            points.append((xpos,ypos))
-            
-    g.append(shapes.path(points))
+            points.append((xpos,ypos))     
+        g.append(shapes.path(points))
     return g
 
 
