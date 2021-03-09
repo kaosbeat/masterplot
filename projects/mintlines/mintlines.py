@@ -68,7 +68,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
     for x in xrange(0,size):
         points = []
         g = shapes.group([])
-        normx = (x-(size/2))/float(size)
+        normx = (x-(size/2))/float(size/2)
         print(normx)
         # if (x == 5):
         #     print(x, size, normx)
