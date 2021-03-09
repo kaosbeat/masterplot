@@ -205,16 +205,22 @@ fi
 
 ##call git
 if [ $g == dogit ]; then
+    git add $PWD/projects/$P
     FILE=$PWD/output/$svgfilename
     if test -f "$FILE"; then
         git add $PWD/output/$svgfilename
     fi
-    git add $PWD/projects/$P
-
-fi
-
-    
-    git commit -a -m "plotting $g"
+    FILE=$PWD/tmp/seed.txt
+    if test -f "$FILE"; then
+        # git add $PWD/tmp/seed.txt
+        # SEED = cat $PWD/tmp/seed.txt
+        
+        SEED=`cat $PWD/tmp/seed.txt`
+        git commit -a -m "plotting with seed $SEED"
+    else
+        git commit -a -m "$gitmsg"
+    fi
+   
     githash=`git rev-parse HEAD`
 fi
 
