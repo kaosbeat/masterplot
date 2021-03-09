@@ -230,10 +230,9 @@ if [ $t != nt ]; then
     echo "$tweetimg"
     FILE=$PWD/tmp/seed.txt
     if test -f "$FILE"; then
-        # git add $PWD/tmp/seed.txt   
+        # git add $PWD/tmp/seed.txt 
         SEED=`cat $PWD/tmp/seed.txt`
         tweet+="the githash is $tweet and the seed to recreate is $SEED"
-    else
-    python lib/tweetplot.py "$tweet $githash" $PWD/output/$svgfilename
     fi
+    python lib/tweetplot.py "$tweet $githash" $PWD/output/$svgfilename
 fi
