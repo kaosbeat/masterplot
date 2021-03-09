@@ -102,7 +102,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
 
 plotter.select_pen(1)
 seed = setSeed()
-plot = drawMintLines(1000,seed,20,20,100,100)
+plot = drawMintLines(100,seed,20,20,100,100)
 # plot = drawMintLines(200,seed,150,50,30,30)
 
 # "center and scale"
@@ -111,6 +111,8 @@ plotter.write(plotgroupnew(plot, plotzone, 1.3))
 
 plotter.select_pen(2)
 plotter.write(sign('minting' +  str(seed) , 7580, 50))
-
+io.save_hpgl(plotter, filename + '.hpgl')
 io.export(plotter, "tmp/out2" , fmt='jpg')
 io.view(plotter)
+
+
