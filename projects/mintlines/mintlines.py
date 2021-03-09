@@ -81,8 +81,8 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
             # else: 
             #     xn = xnoise
             #     yn = ynoise
-            yoff = math.cos(math.asin(normx))*size/2
-            ybuf = (size/2 - yoff)
+            yoff = math.cos(math.asin(normx))*size/4
+            ybuf = (size/4 - yoff)
             if ((y < ybuf ) or y > size-ybuf) :
                 xn = xnoise
             else:
