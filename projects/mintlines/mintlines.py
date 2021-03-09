@@ -69,7 +69,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
         points = []
         g = shapes.group([])
         normx = (x-(size/2))/float(size/2)
-        xnoise = xnoise + size/100
+        xnoise = xnoise + size/10
         print(normx)
         for y in xrange(0,size):          
             yoff = math.cos(math.asin(normx))*size/2
