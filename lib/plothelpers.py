@@ -68,7 +68,8 @@ def plotgroupnew(g, zone, padding):
 		gscale = zw/g.width/padding
 	print ("scale = ", gscale)
 	transforms.scale(g, gscale)
-	transforms.offset(g, (zonecenter[0] - g.center[0] - zw/2, zonecenter[1] - g.center[1] - zh/2))
+	# transforms.offset(g, (zonecenter[0] - g.center[0] - zw/2, zonecenter[1] - g.center[1] - zh/2))
+	transforms.offset(g, ((zw - g.width)/2, (zh -g.height)/2))
 
 	# l = shapes.line((g.center[0], g.center[1]),(zonecenter[0],zonecenter[1]))
 	# g.append(l)

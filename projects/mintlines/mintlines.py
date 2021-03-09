@@ -13,7 +13,7 @@ from chiplotle.geometry.core.label import Label
 from chiplotle.core.interfaces.interface import _Interface
 from chiplotle.plotters.margins.marginssoft import MarginsSoft
 from chiplotle.plotters.margins.marginshard import MarginsHard
-from lib.plothelpers import sign, plotgroup
+from lib.plothelpers import sign, plotgroup, plotgroupnew
 from lib.texttools import writeword
 # from lib.perlin import writeword
 import sys
@@ -21,8 +21,14 @@ import random
 import math
 from noise import pnoise1, pnoise2, pnoise3
 
+plotPlotterOutline = False
+plotPaperOutline = True
+plotDrawingOutline = False
+pltmax = [16158, 11040]
+plotunit = 0.025 # 1 coordinate unit per plotter = 0.025 mm
+papersize = [200,200]
+plotzone = [(0/plotunit, 0/plotunit), (200/plotunit, 200/plotunit)]
 
-print("hello")
 
 filename = sys.argv[1]
 virtualplotting = sys.argv[2]
@@ -34,6 +40,18 @@ if (virtualplotting == 'real'):
 		plotter = instantiate_plotters()[0]
 		print("plotting for real")
 
+if (plotPlotterOutline):
+    plotter.select_pen(3)
+    bounds = shapes.rectangle(pltmax[0],pltmax[1])
+    transforms.offset(bounds,(pltmax[0]/2,pltmax[1]/2))
+
+    plotter.write(bounds)
+
+if (plotPaperOutline):
+    plotter.select_pen(4)
+    paper = shapes.rectangle(papersize[0]/plotunit, papersize[1]/plotunit)
+    transforms.offset(paper,(papersize[0]/plotunit/2,papersize[1]/plotunit/2))
+    plotter.write(paper)
 
 
 def setSeed(): ####needs to be written to tmp file in order to save at in git
@@ -43,21 +61,26 @@ def setSeed(): ####needs to be written to tmp file in order to save at in git
     f.close()
     return seed
 
-def drawMintLines(seed, interx, intery, xnoise, ynoise):
+def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
     random.seed(seed)
     f = shapes.group([])
-    points = []
-    for x in xrange(0,100):
+    
+    for x in xrange(0,size):
+        points = []
         g = shapes.group([])
-        for y in xrange(0,100):          
-            # if (x < 10 or x > 90):
-            #     xnoise = 0
-            #     ynoise = 0
-            if (y < 10 or y > 90):
-                xnoise = 0
-                ynoise = 0
-            xpos = x*interx + random.random() * xnoise
-            ypos = y*intery + random.random() * ynoise
+        for y in xrange(0,size):          
+            if (x < size*0.4 or x > size*0.6):
+                xn = 0
+            if (y < size*0.1 or y > size*0.9):
+                yn = 0
+            else: 
+                xn = xnoise
+                yn = ynoise
+            xpos = x*interx + random.random() * xn
+            ypos = y*intery + random.random() * yn
+            if (x == 12):
+                print(y, size*0.1)
+                print(xpos,ypos, ynoise)
             points.append((xpos,ypos))     
         g.append(shapes.path(points))
         f.append(g)
@@ -72,7 +95,10 @@ def drawMintLines(seed, interx, intery, xnoise, ynoise):
 
 plotter.select_pen(1)
 seed = setSeed()
-plotter.write(drawMintLines(seed,75,75,75,75))
+plot = drawMintLines(100,seed,50,50,300,30)
+# "center and scale"
+
+plotter.write(plotgroupnew(plot, plotzone, 1.3))
 
 plotter.select_pen(2)
 plotter.write(sign('minting' +  str(seed) , 7580, 50))
