@@ -20,7 +20,7 @@ auth.set_access_token(access_token, access_token_secret)
    
 api = tweepy.API(auth) 
 tweet = sys.argv[1] # some text
-image_path = "output/out2.jpg" # jpg created above or in plotrender.py
+image_path = "tmp/out2.jpg" # jpg created above or in plotrender.py
 print(image_path)
 # to attach the media file 
 #status = 

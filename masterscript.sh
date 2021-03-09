@@ -188,7 +188,7 @@ if [ $script == 1 ]; then
 echo "projects/$P/$s $PWD/projects/$P/output/$f $p"
     python projects/$P/$s $PWD/output/$f $p
     if [ $t != nt ]; then
-        tweetimg=$PWD/output/$f.jpg
+        tweetimg=$PWD/tmp/$f.jpg
     fi
 fi
 
@@ -205,7 +205,15 @@ fi
 
 ##call git
 if [ $g == dogit ]; then
-    git add $PWD/output/$svgfilename
+    FILE=$PWD/output/$svgfilename
+    if test -f "$FILE"; then
+        git add $PWD/output/$svgfilename
+    fi
+    git add $PWD/projects/$P
+
+fi
+
+    
     git commit -a -m "plotting $g"
     githash=`git rev-parse HEAD`
 fi
