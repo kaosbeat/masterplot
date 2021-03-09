@@ -228,5 +228,10 @@ fi
 ##post to twitter? >>>> if calling extra script, $tweetimg might have correct filename, else use SVG > check format in in tweetplot.py
 if [ $t != nt ]; then
     echo "$tweetimg"
+    if test -f "$FILE"; then
+        # git add $PWD/tmp/seed.txt   
+        SEED=`cat $PWD/tmp/seed.txt`
+        tweet+=the githash is $tweet and the seed to recreate is $SEED"
+    else
     python lib/tweetplot.py "$tweet $githash" $PWD/output/$svgfilename
 fi
