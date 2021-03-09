@@ -181,6 +181,18 @@ if [ $ink != ni ]; then
     # python plotrender.py $PWD/processed_$filename $3 $5
 fi
 
+
+#### calling additional script
+### the script must accept a filename (absolute path) as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
+if [ $script == 1 ]; then
+echo "projects/$P/$s $PWD/projects/$P/output/$f $p"
+    python projects/$P/$s $PWD/output/$f $p
+    if [ $t != nt ]; then
+        tweetimg=$PWD/output/$f.jpg
+    fi
+fi
+
+
 #### calling chiplotle with the svgplotter arguments are in order!! real/virtual hidden/unhidden/both so pass as -c"real both" or --chiplotle"real unhidden"
 if [ $chip == 1 ]; then
     # python plotrender.py $PWD/projects/$P/output/$svgfilename $c
@@ -190,17 +202,6 @@ if [ $chip == 1 ]; then
 
 fi
  
-
-
-#### calling additional script
-### the script must accept a filename (absolute path) as argument and write a jpg using chiplotle.tools.io.export(plotter, filename, fmt='jpg')
-if [ $script == 1 ]; then
-echo "$s $PWD/projects/$P/output/$f $p"
-    python $s $PWD/output/$f $p
-    if [ $t != nt ]; then
-        tweetimg=$PWD/output/$f.jpg
-    fi
-fi
 
 ##call git
 if [ $g == dogit ]; then
