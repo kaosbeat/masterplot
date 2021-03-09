@@ -205,6 +205,8 @@ fi
 
 ##call git
 if [ $g == dogit ]; then
+    echo "Now really doing GIT"
+    echo `git add $PWD/projects/$P`
     git add $PWD/projects/$P
     FILE=$PWD/output/$svgfilename
     if test -f "$FILE"; then
@@ -212,9 +214,7 @@ if [ $g == dogit ]; then
     fi
     FILE=$PWD/tmp/seed.txt
     if test -f "$FILE"; then
-        # git add $PWD/tmp/seed.txt
-        # SEED = cat $PWD/tmp/seed.txt
-        
+        # git add $PWD/tmp/seed.txt   
         SEED=`cat $PWD/tmp/seed.txt`
         git commit -a -m "plotting with seed $SEED"
     else

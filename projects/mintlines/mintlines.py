@@ -48,9 +48,11 @@ def drawMintLines(seed, interx, intery, xnoise, ynoise):
     g = shapes.group([])
     points = []
     for x in xrange(0,100):
-        for y in xrange(0,100):
-            
-            if (x < 10 and x > 90):
+        for y in xrange(0,100):          
+            if (x < 10 or x > 90):
+                xnoise = 0
+                ynoise = 0
+            if (y < 10 or y > 90):
                 xnoise = 0
                 ynoise = 0
             xpos = x*interx + random.random() * xnoise
