@@ -102,7 +102,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
 
 plotter.select_pen(1)
 seed = setSeed()
-plot = drawMintLines(100,seed,200,200,100,100)
+plot = drawMintLines(1000,seed,20,20,100,100)
 # plot = drawMintLines(200,seed,150,50,30,30)
 
 # "center and scale"
