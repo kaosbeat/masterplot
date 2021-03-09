@@ -68,6 +68,13 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
     for x in xrange(0,size):
         points = []
         g = shapes.group([])
+        if (x == 0 or x == size):
+            normx = 0
+        else:
+            normx = size/x
+        if (x == 0):
+            print(normx)
+            print(math.asin(normx))
         for y in xrange(0,size):          
             if (x < size*0.4 or x > size*0.6):
                 xn = 0
@@ -78,9 +85,9 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
                 yn = ynoise
             xpos = x*interx + random.random() * xn
             ypos = y*intery + random.random() * yn
-            if (x == 12):
-                print(y, size*0.1)
-                print(xpos,ypos, ynoise)
+            # if (x == 12):
+            #     print(y, size*0.1)
+            #     print(xpos,ypos, ynoise)
             points.append((xpos,ypos))     
         g.append(shapes.path(points))
         f.append(g)
