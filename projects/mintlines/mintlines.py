@@ -71,15 +71,13 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
         normx = (x-(size/2))/float(size/2)
         xnoise = xnoise + size/100
         print(normx)
-
         for y in xrange(0,size):          
-
             yoff = math.cos(math.asin(normx))*size/2
             ybuf = (size/2 - yoff)
             if ((y < ybuf ) or y > size-ybuf) :
                 xn = 0
             else:
-                    xn = xnoise
+                xn = xnoise
             yn = xn
             xpos = x*interx + random.random() * xn
             ypos = y*intery + random.random() * yn
@@ -100,7 +98,7 @@ def drawMintLines(size, seed, interx, intery, xnoise, ynoise):
 
 plotter.select_pen(1)
 seed = setSeed()
-plot = drawMintLines(200,seed,100,50,30,30)
+plot = drawMintLines(200,seed,200,200,30,30)
 # plot = drawMintLines(200,seed,150,50,30,30)
 
 # "center and scale"
