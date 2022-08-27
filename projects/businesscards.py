@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # encoding: utf-8
-address = ["kaotec.bandcamp.com","+32 474 436 640","info@kaotec.be","KAOTEC []<>","Kasper Jordaens"]
+
+## plotter is at "sudo rfcomm connect /dev/rfcomm0 20:13:07:25:34:59"
+
+address = ["portfolio.kaotec.be","+32 474 436 640","kasper@kaotec.be","KAOTEC []<>","Kasper Jordaens"]
 ##plot adress and artwork on businesscards
 
 from chiplotle import *
@@ -22,7 +25,7 @@ from lib.plothelpers import plotgroup, plotzone, plotgroupnew, addAndPlotTextmm,
 from lib.texttools import writeword
 import random
 import math
-from noise import pnoise1, pnoise2, pnoise3
+from lib.noise import pnoise1, pnoise2, pnoise3
 
 preview = shapes.group([])
 globaloffset= [500,-2000]
@@ -48,7 +51,7 @@ plotPaperOutline = False
 plotDrawingOutline = True
 plotDrawingOutline = False
 
-logooffset=(0,0)
+logooffset=(300,1500)
 
 def remap(x, in_min, in_max, out_min, out_max):
 	a = (in_max - in_min) + out_min
@@ -223,13 +226,14 @@ def subdivpattern(xoffset,yoffset,width,height,generations,numtypes):
 
 
 
-def plotlogo(logozone):
+def plotlogo(logozone, x, y):
     plotter.select_pen(1)
     file = "lib/kaotec2.svg"
     kaotec = calculatesvggroup(file.encode('utf-8'))
     logo = plotgroupnew(kaotec['group'],logozone,1)
     # print(kaotec)
     transforms.offset(logo,logooffset )
+    transforms.offset(logo,(x,y))
     transforms.offset(logo,((logozone[1][0] - logozone[0][0])/2 , (logozone[1][1] - logozone[0][1])/2))
     preview.append(logo)
     plotter.write(logo)
@@ -238,6 +242,9 @@ def plotlogo(logozone):
     kaotec = calculatesvggroup(file.encode('utf-8'))
     logo = plotgroupnew(kaotec['group'],logozone,1)
     transforms.offset(logo,logooffset )
+    transforms.offset(logo,(x,y))
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print((logozone[1][0] - logozone[0][0])/2 , (logozone[1][1] - logozone[0][1])/2)
     transforms.offset(logo,((logozone[1][0] - logozone[0][0])/2 , (logozone[1][1] - logozone[0][1])/2))
     # print(kaotec)
     plotter.write(logo)
@@ -352,12 +359,15 @@ for i,y in enumerate(xrange(4)):
     r = shapes.rectangle(businesscardsize[0],businesscardsize[1])
     transforms.offset(r, (businesscardsize[0]/2 + globaloffset[0], businesscardsize[1]/2 + globaloffset[1] + (i+1)*yoffset))
     plotter.write(r)
+
     
     logozone[0][0] = logozone[0][0] 
     logozone[1][0] = logozone[1][0] 
     logozone[0][1] = logozone[0][1] + yoffset
     logozone[1][1] = logozone[1][1] + yoffset
-    
+    # print("---------------------------------------------------------------------------------------------")
+    # print(logozone)
+    plotlogo(logozone, 0, (i)*yoffset)
     addresszone[0][0] = addresszone[0][0]
     addresszone[1][0] = addresszone[1][0]
     addresszone[0][1] = addresszone[0][1] + yoffset
@@ -369,7 +379,7 @@ for i,y in enumerate(xrange(4)):
     backgroundzone[1][1] = backgroundzone[1][1] + yoffset
 
     
-    plotlogo(logozone)
+    
 
     plotter.select_pen(3)
     plotter.write(writeaddress(address, addresszone))
