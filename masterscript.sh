@@ -161,6 +161,9 @@ if [ $blend == 1 ]; then
         echo "no blenderfile supplied, please specify using -B / -blenderfile, use filename, not path, file should be in same directory"
         exit
     fi
+    # linux
+
+    # osx
     /Applications/Blender.app/Contents/MacOS/Blender --log-file logfile projects/$P/$B.blend --background --python projects/$P/generateandrender.py -- $b -f $f -P $P
     # svgfilename=$f.svg
     svgfilename=$f
