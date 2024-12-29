@@ -7,9 +7,9 @@
 address = ["portfolio.kaotec.be","+32 474 436 640","kasper@kaotec.be","KAOTEC []<>","Kasper Jordaens"]
 ##plot adress and artwork on businesscards
 
-from chiplotle import *
-from chiplotle.tools.io import export
-from chiplotle.tools.plottertools import instantiate_virtual_plotter
+from chiplotle3 import *
+from chiplotle3.tools.io import export
+from chiplotle3.tools.plottertools import instantiate_virtual_plotter
 import sys
 filename = sys.argv[1]
 virtualplotting = sys.argv[2]
@@ -21,8 +21,8 @@ if (virtualplotting == 'real'):
 		plotter = instantiate_plotters()[0]
 		print("plotting for real")
 
-from lib.plothelpers import plotgroup, plotzone, plotgroupnew, addAndPlotTextmm, calculatesvggroup,plotSVG
-from lib.texttools import writeword
+from lib.plothelpers3 import plotgroup, plotzone, plotgroupnew, addAndPlotTextmm, calculatesvggroup,plotSVG
+from lib.texttools3 import writeword
 import random
 import math
 from lib.noise import pnoise1, pnoise2, pnoise3

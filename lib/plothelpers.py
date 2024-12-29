@@ -114,7 +114,7 @@ def calculatesvggroup(svg):
 				g.append(shapes.line((segment.start.real,segment.start.imag),(segment.end.real,segment.end.imag)))
 			if isinstance(segment, CubicBezier):
 				g.append(shapes.bezier_path([(segment.start.real,segment.start.imag),(segment.control1.real,segment.control1.imag),(segment.control2.real,segment.control2.imag),(segment.end.real,segment.end.imag)],0))
-	bb = get__rectangle(g)
+	bb = get_vounding_rectangle(g)
 	bb = get_minmax_coordinates(bb.points)
 	print bb
 	print (svg + " is " + str(g.width*plotunit) + "mm")
